@@ -21,4 +21,10 @@
 		<ProjectReference Include="..\Portfolio.Core\Portfolio.Core.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Features\Country\Commands\CreateCountry\" />
+	  <Folder Include="Features\Country\Commands\DeleteCountry\" />
+	  <Folder Include="Features\Country\Commands\UpdateCountry\" />
+	</ItemGroup>
+
 </Project>

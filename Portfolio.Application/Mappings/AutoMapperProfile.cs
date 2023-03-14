@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Portfolio.Application.Features.Country;
 using Portfolio.Core.Custom;
 using Portfolio.Core.DTO;
 using Portfolio.Core.Entities;
@@ -14,8 +15,11 @@ namespace Portfolio.Application.Mappings
             CreateMap(typeof(PagedList<>), typeof(MetaData<>)).ConvertUsing(typeof(ConverterPaging<,>));
 
             /* Mapping queries and parameters. */
+            CreateMap<Country, CountryDTO>().ReverseMap();
+            CreateMap<GetAllCountryQuery, GetAllCountryParameter>().ReverseMap();
 
             CreateMap<Entity, EntityDTO>().ReverseMap();
+
             CreateMap<Entity, CreateEntityDTO>().ReverseMap();
             CreateMap<EntityDTO, CreateEntityDTO>().ReverseMap();
             CreateMap<Entity, UpdateEntityDTO>().ReverseMap();

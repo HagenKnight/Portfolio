@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Portfolio.Core.DTO;
 
-namespace Portfolio.Application.Features.Entity
+namespace Portfolio.Application.Features.Entity.Commands
 {
     public class DeleteEntityCommandValidator : AbstractValidator<DeleteEntityDTO>
     {

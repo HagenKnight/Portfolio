@@ -3,7 +3,7 @@ using Portfolio.Core.DTO;
 using Portfolio.Core.Interfaces.Services;
 using Portfolio.Core.Wrappers;
 
-namespace SoundBeats.Application.Features.Artist.Commands
+namespace Portfolio.Application.Features.Entity.Commands
 {
     public class DeleteEntityCommandHandler : IRequestHandler<DeleteEntityDTO, ApiResponse<DeleteEntityDTO>>
     {

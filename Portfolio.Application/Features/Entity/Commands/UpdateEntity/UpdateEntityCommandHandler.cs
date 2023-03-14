@@ -3,7 +3,7 @@ using Portfolio.Core.DTO;
 using Portfolio.Core.Interfaces.Services;
 using Portfolio.Core.Wrappers;
 
-namespace Portfolio.Application.Features.Entity
+namespace Portfolio.Application.Features.Entity.Commands
 {
     public class UpdateEntityCommandHandler : IRequestHandler<UpdateEntityDTO, ApiResponse<UpdateEntityDTO>>
     {

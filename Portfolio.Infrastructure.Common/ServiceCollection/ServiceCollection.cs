@@ -16,9 +16,11 @@ namespace Portfolio.Infrastructure.Common.ServiceCollection
         {
             /* Repositories */
             services.AddTransient<IEntityRepository<PortfolioDbContext>, EntityRepository>();
+            services.AddTransient<ICountryRepository<PortfolioDbContext>, CountryRepository>();
 
             /* Services */
             services.AddTransient<IEntityService, EntityService>();
+            services.AddTransient<ICountryService, CountryService>();
 
             /* Helpers */
             services.AddSingleton<IUriService>(o =>
