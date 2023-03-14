@@ -17,7 +17,8 @@ namespace Portfolio.Infrastructure.Persistence.Data
             var optionsBuilder = new DbContextOptionsBuilder<PortfolioDbContext>();
             string connectionString = configuration.GetConnectionString("PortfolioConnection");
 
-            optionsBuilder.UseSqlServer(connectionString);
+            //optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 
             return new PortfolioDbContext(optionsBuilder.Options);
         }

@@ -3,19 +3,34 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portfolio.Api", "Portfolio.Api\Portfolio.Api.csproj", "{6F8EC542-7063-4DB0-8F93-4EEDFCF077C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Api", "Portfolio.Api\Portfolio.Api.csproj", "{6F8EC542-7063-4DB0-8F93-4EEDFCF077C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portfolio.Application", "Portfolio.Application\Portfolio.Application.csproj", "{ABC84E7B-941B-48D9-9276-1E14712AF785}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Application", "Portfolio.Application\Portfolio.Application.csproj", "{ABC84E7B-941B-48D9-9276-1E14712AF785}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portfolio.Core", "Portfolio.Core\Portfolio.Core.csproj", "{115CD603-E456-498B-9299-7983A0EE1E08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Core", "Portfolio.Core\Portfolio.Core.csproj", "{115CD603-E456-498B-9299-7983A0EE1E08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portfolio.Infrastructure.Common", "Portfolio.Infrastructure.Common\Portfolio.Infrastructure.Common.csproj", "{AB318202-B00B-4FD3-B688-22C52F277673}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Infrastructure.Common", "Portfolio.Infrastructure.Common\Portfolio.Infrastructure.Common.csproj", "{AB318202-B00B-4FD3-B688-22C52F277673}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portfolio.Infrastructure.Persistence", "Portfolio.Infrastructure.Persistence\Portfolio.Infrastructure.Persistence.csproj", "{F055FD3E-6B14-477B-B211-EC0660E6B01A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Infrastructure.Persistence", "Portfolio.Infrastructure.Persistence\Portfolio.Infrastructure.Persistence.csproj", "{F055FD3E-6B14-477B-B211-EC0660E6B01A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portfolio.Infrastructure.UnitOfWork", "Portfolio.Infrastructure.UnitOfWork\Portfolio.Infrastructure.UnitOfWork.csproj", "{B75BFF72-9B18-46BF-8F2A-AB02E0D20BD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Infrastructure.UnitOfWork", "Portfolio.Infrastructure.UnitOfWork\Portfolio.Infrastructure.UnitOfWork.csproj", "{B75BFF72-9B18-46BF-8F2A-AB02E0D20BD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portfolio.Infrastructure.Identity", "Portfolio.Infrastructure.Identity\Portfolio.Infrastructure.Identity.csproj", "{9C98075B-4EBE-4F7F-965B-5F4A8EE9016A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Infrastructure.Identity", "Portfolio.Infrastructure.Identity\Portfolio.Infrastructure.Identity.csproj", "{9C98075B-4EBE-4F7F-965B-5F4A8EE9016A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AA5C2480-D7FE-4530-A3E0-C9433D6BDE5F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{3F1ED7A5-D95C-456B-9ADD-A6EB0EA9BD84}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{EF84A9FE-0F98-42FA-8F41-9003EE26EF09}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{516ED6D7-6AC9-4D58-8448-7E1B4DC4B6CB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CORE", "CORE", "{14EBB6C2-2086-4B69-9DFF-6C000C760006}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "INFRASTRUCTURE", "INFRASTRUCTURE", "{E706204F-EA59-4F3A-A37B-ED64B3F5AC11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +69,18 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6F8EC542-7063-4DB0-8F93-4EEDFCF077C0} = {516ED6D7-6AC9-4D58-8448-7E1B4DC4B6CB}
+		{ABC84E7B-941B-48D9-9276-1E14712AF785} = {14EBB6C2-2086-4B69-9DFF-6C000C760006}
+		{115CD603-E456-498B-9299-7983A0EE1E08} = {14EBB6C2-2086-4B69-9DFF-6C000C760006}
+		{AB318202-B00B-4FD3-B688-22C52F277673} = {E706204F-EA59-4F3A-A37B-ED64B3F5AC11}
+		{F055FD3E-6B14-477B-B211-EC0660E6B01A} = {E706204F-EA59-4F3A-A37B-ED64B3F5AC11}
+		{B75BFF72-9B18-46BF-8F2A-AB02E0D20BD0} = {E706204F-EA59-4F3A-A37B-ED64B3F5AC11}
+		{9C98075B-4EBE-4F7F-965B-5F4A8EE9016A} = {E706204F-EA59-4F3A-A37B-ED64B3F5AC11}
+		{516ED6D7-6AC9-4D58-8448-7E1B4DC4B6CB} = {AA5C2480-D7FE-4530-A3E0-C9433D6BDE5F}
+		{14EBB6C2-2086-4B69-9DFF-6C000C760006} = {AA5C2480-D7FE-4530-A3E0-C9433D6BDE5F}
+		{E706204F-EA59-4F3A-A37B-ED64B3F5AC11} = {AA5C2480-D7FE-4530-A3E0-C9433D6BDE5F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EEE017D6-451E-4EB9-A22F-D3BAA79EA0B0}

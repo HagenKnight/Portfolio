@@ -11,7 +11,8 @@ namespace Portfolio.Infrastructure.Persistence.ServiceCollection
         {
             /* Contextos de Bases de Datos. */
             string? connectionString = configuration.GetConnectionString("PortfolioConnection");
-            services.AddDbContext<PortfolioDbContext>(options => { options.UseSqlServer(connectionString); });
+            //services.AddDbContext<PortfolioDbContext>(options => { options.UseSqlServer(connectionString); });
+            services.AddDbContext<PortfolioDbContext>(options => { options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)); });
 
             /* DbFactory pattern. */
             /* Agregar aquí las implementaciones de Factory Pattern, asociadas a cada conexto de Base de Datos... */

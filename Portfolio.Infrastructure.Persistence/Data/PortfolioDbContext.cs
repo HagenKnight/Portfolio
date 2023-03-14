@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Portfolio.Core.Entities;
-
-//using Portfolio.Infrastructure.Persistence.Data.Configurations;
+using Portfolio.Infrastructure.Persistence.Data.Configurations;
 
 namespace Portfolio.Infrastructure.Persistence.Data
 {
@@ -15,12 +14,16 @@ namespace Portfolio.Infrastructure.Persistence.Data
         }
 
         // Dbset for Entities */
-
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<ResumeType> ResumeTypes { get; set; }
+        public DbSet<Resume> Resumes { get; set; }
+        public DbSet<Service> Services { get; set; }
+        public DbSet<Certificate> Certificates { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.ApplyConfiguration(new EntityConfiguration());
+            modelBuilder.ApplyConfiguration(new CountryConfiguration());
 
             // Singularize table name
             foreach (IMutableEntityType entity in modelBuilder.Model.GetEntityTypes())
@@ -30,6 +33,17 @@ namespace Portfolio.Infrastructure.Persistence.Data
                     entity.SetTableName(entity.DisplayName());
                 }
             }
+
+            modelBuilder
+                .Entity<ResumeType>()
+                .HasData(Enum.GetValues(typeof(ResumeTypeEnum))
+                .Cast<ResumeTypeEnum>()
+                .Select(e => new ResumeType
+                {
+                    Id = (int)e,
+                    Name = e.ToString()
+                })
+                );
         }
 
     }

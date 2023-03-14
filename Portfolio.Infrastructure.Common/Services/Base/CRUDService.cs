@@ -145,7 +145,7 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
             try
             {
                 TEntity addEntity = Mapper.Map<TEntity>(objDTO);
-                addEntity.CreationDate = DateTime.UtcNow;
+                addEntity.CreatedDate = DateTime.UtcNow;
                 await _repository.AddAsync(addEntity, cancellationToken);
                 await _unitOfWork.CommitAsync(cancellationToken);
                 return Mapper.Map<TQueryDTO>(addEntity);
@@ -168,7 +168,7 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
                     throw new EntityNotFoundException(typeof(TEntity), Convert.ToInt32(Mapper.Map<TEntity>(objDTO).Id));
 
                 Mapper.Map(objDTO, updatedEntity);
-                updatedEntity.UpdateDate = DateTime.UtcNow;
+                updatedEntity.LastModifiedDate = DateTime.UtcNow;
                 _repository.Update(updatedEntity);
                 await _unitOfWork.CommitAsync(cancellationToken);
                 return Mapper.Map<TQueryDTO>(updatedEntity);

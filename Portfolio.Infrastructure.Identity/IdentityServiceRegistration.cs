@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Portfolio.Application.Contracts.Identity;
 using Portfolio.Application.Models.Identity;
-using Portfolio.Infrastructure.Identity.Data;
-using Portfolio.Infrastructure.Identity.Models;
+using Portfolio.Core.Identity;
 using Portfolio.Infrastructure.Identity.Services;
 using System.Text;
 
@@ -17,10 +17,15 @@ namespace Portfolio.Infrastructure.Identity
     {
         public static IServiceCollection ConfigureIdentityServices(this IServiceCollection services, IConfiguration configuration)
         {
+            //string connectionString = configuration.GetConnectionString("IdentityConnection");
             services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
             services.AddDbContext<PortfolioIdentityDbContext>(
-                options => options.UseSqlServer(configuration.GetConnectionString("IdentityConnectionString"),
+                options => options.UseMySql(configuration.GetConnectionString("IdentityConnection"), ServerVersion.AutoDetect(configuration.GetConnectionString("IdentityConnection")),
                 b => b.MigrationsAssembly(typeof(PortfolioIdentityDbContext).Assembly.FullName))
+                .UseLoggerFactory(LoggerFactory.Create(b => b
+                    .AddConsole()
+                    .AddFilter(level => level >= LogLevel.Information)))
+                .EnableSensitiveDataLogging()
             );
 
             services.AddIdentity<ApplicationUser, IdentityRole>()

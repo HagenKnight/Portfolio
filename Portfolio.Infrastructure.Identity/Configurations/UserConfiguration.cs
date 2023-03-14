@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Portfolio.Infrastructure.Identity.Models;
+using Portfolio.Core.Identity;
 
 namespace Portfolio.Infrastructure.Identity.Configurations
 {
@@ -28,7 +28,7 @@ namespace Portfolio.Infrastructure.Identity.Configurations
                     Id = "d10fb303-28e4-4e13-a678-7dc5f3a134ad",
                     Email = "lordhagen.de@gmail.com",
                     NormalizedEmail = "lordhagen.de@gmail.com",
-                    FirstName = "Hagen",
+                    FirstName = "Jacobo",
                     Lastname = "von Merak",
                     UserName = "lordhagen.de@gmail.com",
                     NormalizedUserName = "lordhagen.de@gmail.com",

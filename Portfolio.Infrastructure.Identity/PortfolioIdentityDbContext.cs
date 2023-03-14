@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Portfolio.Core.Identity;
 using Portfolio.Infrastructure.Identity.Configurations;
-using Portfolio.Infrastructure.Identity.Models;
 
-namespace Portfolio.Infrastructure.Identity.Data
+namespace Portfolio.Infrastructure.Identity
 {
     public class PortfolioIdentityDbContext : IdentityDbContext<ApplicationUser>
     {

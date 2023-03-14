@@ -9,12 +9,12 @@ namespace Portfolio.Core.Entities.Base
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public TKey Id { get; set; }
-        public int AccountIdCreationDate { get; set; }
-        public DateTime CreationDate { get; set; }
-        public DateTime? UpdateDate { get; set; }
-        public int? AccountIdUpdateDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public string? CreatedBy { get; set; }
+        public DateTime? LastModifiedDate { get; set; }
+        public string? LastModifiedBy { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime? DeleteDate { get; set; }
-        public int? AccountIdDeleteDate { get; set; }
+        public string? DeletedBy { get; set; }
     }
 }
