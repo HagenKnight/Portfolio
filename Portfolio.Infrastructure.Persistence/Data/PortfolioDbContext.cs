@@ -15,6 +15,7 @@ namespace Portfolio.Infrastructure.Persistence.Data
 
         // Dbset for Entities */
         public DbSet<Country> Countries { get; set; }
+        public DbSet<WorkerProfile> WorkerProfiles { get; set; }
         public DbSet<ResumeType> ResumeTypes { get; set; }
         public DbSet<Resume> Resumes { get; set; }
         public DbSet<Service> Services { get; set; }

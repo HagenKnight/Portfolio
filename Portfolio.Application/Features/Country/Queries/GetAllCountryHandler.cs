@@ -1,13 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
-using Portfolio.Core.Custom;
 using Portfolio.Core.DTO;
-using Portfolio.Core.Entities.Base;
 using Portfolio.Core.Interfaces.Management;
 using Portfolio.Core.Interfaces.Services;
-using Portfolio.Core.Wrappers;
-using System.Linq.Expressions;
-using Utilities;
 
 namespace Portfolio.Application.Features.Country
 {

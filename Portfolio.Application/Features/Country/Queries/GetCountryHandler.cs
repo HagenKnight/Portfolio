@@ -1,9 +1,8 @@
 ﻿using MediatR;
-using Portfolio.Application.Features.Country;
 using Portfolio.Core.DTO;
 using Portfolio.Core.Interfaces.Services;
 
-namespace SoundBeats.Application.Features.Country
+namespace Portfolio.Application.Features.Country
 {
     public class GetCountryHandler : IRequestHandler<GetCountryQuery, CountryDTO>
     {

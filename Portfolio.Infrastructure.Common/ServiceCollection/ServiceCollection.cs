@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Portfolio.Core.Entities;
 using Portfolio.Core.Interfaces.Management;
 using Portfolio.Core.Interfaces.Repository;
 using Portfolio.Core.Interfaces.Services;
@@ -17,10 +18,12 @@ namespace Portfolio.Infrastructure.Common.ServiceCollection
             /* Repositories */
             services.AddTransient<IEntityRepository<PortfolioDbContext>, EntityRepository>();
             services.AddTransient<ICountryRepository<PortfolioDbContext>, CountryRepository>();
+            services.AddTransient<IWorkerProfileRepository<PortfolioDbContext>, WorkerProfileRepository>();
 
             /* Services */
             services.AddTransient<IEntityService, EntityService>();
             services.AddTransient<ICountryService, CountryService>();
+            services.AddTransient<IWorkerProfileService, WorkerProfileService>();
 
             /* Helpers */
             services.AddSingleton<IUriService>(o =>

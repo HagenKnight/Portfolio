@@ -2,14 +2,12 @@
 using Portfolio.Core.DTO;
 using Portfolio.Core.DTO.Base;
 using Portfolio.Core.Entities;
-using Portfolio.Core.Entities.Base;
 using Portfolio.Core.Interfaces.Base;
 using Portfolio.Core.Interfaces.Management;
 using Portfolio.Core.Interfaces.Repository;
 using Portfolio.Core.Interfaces.Services;
 using Portfolio.Infrastructure.Persistence.Data;
 using Portfolio.Infrastructure.Persistence.Services.Base;
-using System.Linq.Expressions;
 
 namespace Portfolio.Infrastructure.Common.Services
 {
