@@ -33,6 +33,7 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
             _unitOfWork = Guard.Against.Null(unitOfWork, nameof(unitOfWork));
         }
 
+        #region Query for Single record
 
         public async Task<TQueryDTO> FindAsync(int id, CancellationToken cancellationToken = default)
         {
@@ -49,15 +50,17 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
                 throw new EntityNotFoundException(typeof(TEntity), id);
         }
 
-        public async Task<TQueryDTO> GetSingleAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
+        public async Task<TQueryDTO> GetSingleAsync(Expression<Func<TEntity, bool>> predicate, string entityToInclude = null, CancellationToken cancellationToken = default)
         {
-            TEntity getEntity = await _repository.FilterSingleAsync(predicate, cancellationToken);
+            TEntity getEntity = await _repository.FilterSingleAsync(predicate, entityToInclude, cancellationToken);
 
             if (getEntity != null)
                 return Mapper.Map<TQueryDTO>(getEntity);
             else
                 throw new EntityNotFoundException(typeof(TEntity));
         }
+
+        #endregion
 
         public async Task<IEnumerable<TQueryDTO>> FilterAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default, string fields = null, string orderBy = null)
         {
@@ -70,16 +73,15 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
             return Mapper.Map<IEnumerable<TQueryDTO>>(list);
         }
 
-
         public async Task<IEnumerable<TQueryDTO>> GetAllAsync(CancellationToken cancellationToken = default, string fields = null, string orderBy = null)
         {
-            IEnumerable<TEntity> list = await _repository.AllAsync(cancellationToken, orderBy);
-
-            /* Limit query fields. */
-            if (!string.IsNullOrWhiteSpace(fields))
-                list = list.AsQueryable().Select<TEntity>($"new({fields})");
-
-            return Mapper.Map<IEnumerable<TQueryDTO>>(list);
+	        IEnumerable<TEntity> list = await _repository.AllAsync(orderBy, cancellationToken);
+	
+	        /* Limit query fields. */
+	        if (!string.IsNullOrWhiteSpace(fields))
+	            list = list.AsQueryable().Select<TEntity>($"new({fields})");
+	
+	        return Mapper.Map<IEnumerable<TQueryDTO>>(list);
         }
 
         public async Task<IEnumerable<TQueryDTO>> GetAllAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default, string fields = null, string orderBy = null)
@@ -93,6 +95,14 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
             return Mapper.Map<IEnumerable<TQueryDTO>>(list);
         }
 
+        public async Task<IEnumerable<TQueryDTO>> GetAllIncludeAsync(string entityToInclude = null, CancellationToken cancellationToken = default)
+        {
+            IEnumerable<TEntity> list = await _repository.AllAsync(entityToInclude, cancellationToken);
+            return Mapper.Map<IEnumerable<TQueryDTO>>(list);
+        }
+
+
+        #region Paged queries
 
         public async Task<IEnumerable<TQueryDTO>> GetPagedAsync(int pageNumber, int pageSize, CancellationToken cancellationToken = default, string fields = null, string orderBy = null)
         {
@@ -137,6 +147,7 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
             return Mapper.Map<IEnumerable<TQueryDTO>>(list);
         }
 
+        #endregion
 
         #region C.U.D operations
 
@@ -145,7 +156,7 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
             try
             {
                 TEntity addEntity = Mapper.Map<TEntity>(objDTO);
-                addEntity.CreatedDate = DateTime.UtcNow;
+                //addEntity.CreatedDate = DateTime.UtcNow;
                 await _repository.AddAsync(addEntity, cancellationToken);
                 await _unitOfWork.CommitAsync(cancellationToken);
                 return Mapper.Map<TQueryDTO>(addEntity);
@@ -168,7 +179,7 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
                     throw new EntityNotFoundException(typeof(TEntity), Convert.ToInt32(Mapper.Map<TEntity>(objDTO).Id));
 
                 Mapper.Map(objDTO, updatedEntity);
-                updatedEntity.LastModifiedDate = DateTime.UtcNow;
+                //updatedEntity.LastModifiedDate = DateTime.UtcNow;
                 _repository.Update(updatedEntity);
                 await _unitOfWork.CommitAsync(cancellationToken);
                 return Mapper.Map<TQueryDTO>(updatedEntity);
@@ -188,7 +199,10 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
 
             if (autoSave)
             {
-                Mapper.Map(objDTO, deletedEntity); deletedEntity.IsDeleted = true; deletedEntity.DeleteDate = DateTime.UtcNow;
+                Mapper.Map(objDTO, deletedEntity); 
+                deletedEntity.IsDeleted = true; 
+                deletedEntity.DeleteDate = DateTime.UtcNow;
+                deletedEntity.DeletedBy = "system";
                 _repository.Update(deletedEntity);
             }
             else

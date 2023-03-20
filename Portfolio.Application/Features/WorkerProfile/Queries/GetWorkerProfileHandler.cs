@@ -11,7 +11,7 @@ namespace Portfolio.Application.Features.WorkerProfile
         public GetWorkerProfileHandler(IWorkerProfileService workerProfile) => _workerProfile = workerProfile;
 
         public async Task<WorkerProfileDTO> Handle(GetWorkerProfileQuery request, CancellationToken cancellationToken) =>
-            await _workerProfile.FindWorkerProfile(request.Id, cancellationToken);
+            await _workerProfile.FindWorkerProfile(request.Email, cancellationToken);
 
     }
 }

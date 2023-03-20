@@ -29,8 +29,13 @@ namespace Portfolio.Infrastructure.Common.Services
         public async Task<WorkerProfileDTO> FindWorkerProfile(int id, CancellationToken cancellationToken = default) =>
             await FindAsync(id, cancellationToken);
 
+        public async Task<WorkerProfileDTO> FindWorkerProfile(string email, CancellationToken cancellationToken = default) =>
+            await GetSingleAsync( u => u.Email == email &&
+                                 u.IsDeleted == false, "Country", cancellationToken);
+
+
         public async Task<IEnumerable<WorkerProfileDTO>> GetWorkerProfiles(CancellationToken cancellationToken = default) =>
-            await GetAllAsync(cancellationToken);
+            await GetAllIncludeAsync("Country", cancellationToken);
 
         public async Task<CreateWorkerProfileDTO> AddWorkerProfile(CreateWorkerProfileDTO objDTO, CancellationToken cancellationToken = default)
         {
@@ -59,8 +64,8 @@ namespace Portfolio.Infrastructure.Common.Services
         {
             var ifExists = await FilterAsync(u => u.Id == objDTO.Id && u.IsDeleted == false);
             if (ifExists == null || ifExists.Count() == 0)
-            if (ifExists == null || ifExists.Count() == 0)
-                throw new EntityNotFoundException(objDTO.Id.ToString());
+                if (ifExists == null || ifExists.Count() == 0)
+                    throw new EntityNotFoundException(objDTO.Id.ToString());
 
             return Mapper.Map<DeleteWorkerProfileDTO>(await DeleteAsync(objDTO, autoSave, cancellationToken));
         }

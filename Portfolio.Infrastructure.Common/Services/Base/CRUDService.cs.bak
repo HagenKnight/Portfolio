@@ -10,50 +10,57 @@ using System.Linq.Expressions;
 
 namespace Portfolio.Infrastructure.Persistence.Services.Base
 {
-    public abstract class ReadService<TQueryDTO, TKey, TEntity, TRepoRead, TContext> :
-      IReadService<TQueryDTO, TKey, TEntity, TRepoRead, TContext>
-      where TEntity : class, IEntityBase<TKey>
-      where TRepoRead : IReadRepository<TEntity, TContext>
-      where TContext : DbContext, new()
+    public abstract class CRUDService<TQueryDTO, TCommandDTO, TKey, TEntity, TRepoAll, TContext> :
+                         ICRUDService<TQueryDTO, TCommandDTO, TKey, TEntity, TRepoAll, TContext>
+        where TEntity : class, IEntityBase<TKey>
+        where TRepoAll : IBaseRepository<TEntity, TContext>
+        where TContext : DbContext, new()
     {
         internal int _iCount;
         internal readonly IMapper _mapper;
-        internal readonly TRepoRead _repository;
+        internal readonly TRepoAll _repository;
         internal readonly IUnitOfWork<TContext> _unitOfWork;
 
         public int RowCount => _iCount;
-
-
         protected IMapper Mapper => _mapper;
-        protected TRepoRead Repository => _repository;
+        protected TRepoAll Repository => _repository;
         protected IUnitOfWork<TContext> UnitOfWork => _unitOfWork;
 
-        public ReadService(IMapper mapper, IUnitOfWork<TContext> unitOfWork, TRepoRead repository)
+        public CRUDService(TRepoAll repository, IUnitOfWork<TContext> unitOfWork, IMapper mapper)
         {
-            _unitOfWork = Guard.Against.Null(unitOfWork, nameof(unitOfWork));
             _repository = Guard.Against.Null(repository, nameof(repository));
             _mapper = Guard.Against.Null(mapper, nameof(mapper));
+            _unitOfWork = Guard.Against.Null(unitOfWork, nameof(unitOfWork));
         }
+
+        #region Query for Single record
 
         public async Task<TQueryDTO> FindAsync(int id, CancellationToken cancellationToken = default)
         {
             TEntity getEntity = await _repository.GetByIdAsync(id, cancellationToken);
 
             if (getEntity != null)
-                return _mapper.Map<TQueryDTO>(getEntity);
+            {
+                if (!getEntity.IsDeleted)
+                    return Mapper.Map<TQueryDTO>(getEntity);
+                else
+                    throw new EntityNotFoundException(typeof(TEntity), id);
+            }
             else
                 throw new EntityNotFoundException(typeof(TEntity), id);
         }
 
-        public async Task<TQueryDTO> GetSingleAsync(Expression<Func<TEntity, bool>> predicate, string entityToInclude = null, CancellationToken cancellationToken = default)
+        public async Task<TQueryDTO> GetSingleAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
         {
-            TEntity getEntity = await _repository.FilterSingleAsync(predicate, entityToInclude, cancellationToken);
+            TEntity getEntity = await _repository.FilterSingleAsync(predicate, cancellationToken);
 
             if (getEntity != null)
-                return _mapper.Map<TQueryDTO>(getEntity);
+                return Mapper.Map<TQueryDTO>(getEntity);
             else
                 throw new EntityNotFoundException(typeof(TEntity));
         }
+
+        #endregion
 
         public async Task<IEnumerable<TQueryDTO>> FilterAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default, string fields = null, string orderBy = null)
         {
@@ -68,7 +75,7 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
 
         public async Task<IEnumerable<TQueryDTO>> GetAllAsync(CancellationToken cancellationToken = default, string fields = null, string orderBy = null)
         {
-            IEnumerable<TEntity> list = await _repository.AllAsync(orderBy, cancellationToken);
+            IEnumerable<TEntity> list = await _repository.AllAsync(cancellationToken, orderBy);
 
             /* Limit query fields. */
             if (!string.IsNullOrWhiteSpace(fields))
@@ -94,6 +101,9 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
             return Mapper.Map<IEnumerable<TQueryDTO>>(list);
         }
 
+
+        #region Paged queries
+
         public async Task<IEnumerable<TQueryDTO>> GetPagedAsync(int pageNumber, int pageSize, CancellationToken cancellationToken = default, string fields = null, string orderBy = null)
         {
             _iCount = _repository.GetCount();
@@ -115,7 +125,6 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
 
             return Mapper.Map<IEnumerable<TQueryDTO>>(list);
         }
-
         public async Task<IEnumerable<TQueryDTO>> GetPagedAsync(int pageNumber, int pageSize, Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default, string fields = null, string orderBy = null)
         {
             _iCount = _repository.GetCount(predicate);
@@ -138,6 +147,72 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
             return Mapper.Map<IEnumerable<TQueryDTO>>(list);
         }
 
+        #endregion
+
+        #region C.U.D operations
+
+        public async Task<TQueryDTO> InsertAsync(TCommandDTO objDTO, CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                TEntity addEntity = Mapper.Map<TEntity>(objDTO);
+                //addEntity.CreatedDate = DateTime.UtcNow;
+                await _repository.AddAsync(addEntity, cancellationToken);
+                await _unitOfWork.CommitAsync(cancellationToken);
+                return Mapper.Map<TQueryDTO>(addEntity);
+            }
+            catch (Exception ex)
+            {
+
+                throw new MappingNotFoundException(ex.Message, ex.InnerException);
+            }
+
+        }
+
+        public async Task<TQueryDTO> UpdateAsync(TCommandDTO objDTO, CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                TEntity updatedEntity = await _repository.GetByIdAsync(Convert.ToInt32(Mapper.Map<TEntity>(objDTO).Id), cancellationToken);
+
+                if (updatedEntity == null)
+                    throw new EntityNotFoundException(typeof(TEntity), Convert.ToInt32(Mapper.Map<TEntity>(objDTO).Id));
+
+                Mapper.Map(objDTO, updatedEntity);
+                //updatedEntity.LastModifiedDate = DateTime.UtcNow;
+                _repository.Update(updatedEntity);
+                await _unitOfWork.CommitAsync(cancellationToken);
+                return Mapper.Map<TQueryDTO>(updatedEntity);
+            }
+            catch (Exception ex)
+            {
+                throw new MappingNotFoundException(ex.Message, ex.InnerException);
+            }
+        }
+
+        public async Task<TQueryDTO> DeleteAsync(TCommandDTO objDTO, bool autoSave = true, CancellationToken cancellationToken = default)
+        {
+            TEntity deletedEntity = await _repository.GetByIdAsync(Convert.ToInt32(Mapper.Map<TEntity>(objDTO).Id), cancellationToken);
+
+            if (deletedEntity == null)
+                throw new EntityNotFoundException(typeof(TEntity), Convert.ToInt32(Mapper.Map<TEntity>(objDTO).Id));
+
+            if (autoSave)
+            {
+                Mapper.Map(objDTO, deletedEntity); 
+                deletedEntity.IsDeleted = true; 
+                deletedEntity.DeleteDate = DateTime.UtcNow;
+                deletedEntity.LastDeletedBy = "system";
+                _repository.Update(deletedEntity);
+            }
+            else
+                _repository.Delete(deletedEntity);
+
+            await _unitOfWork.CommitAsync(cancellationToken);
+            return Mapper.Map<TQueryDTO>(deletedEntity);
+        }
+
+        #endregion
 
     }
 }

@@ -25,10 +25,15 @@ namespace Portfolio.Api.Controllers
         public async Task<IEnumerable<WorkerProfileDTO>> GetWorkerProfiles() =>
             await _mediator.Send(new GetAllWorkerProfileQuery());
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<WorkerProfileDTO> GetWorkerProfile(int id) =>
             await _mediator.Send(new GetWorkerProfileQuery(id));
 
+
+        //}/workerprofile/emailValue
+        [HttpGet("{email}")]
+        public async Task<WorkerProfileDTO> GetWorkerProfile(string email) =>
+            await _mediator.Send(new GetWorkerProfileQuery(email));
 
         // POST: api/GetWorkerProfile
         [HttpPost]

@@ -8,6 +8,8 @@ namespace Portfolio.Core.Interfaces.Services
 
         Task<WorkerProfileDTO> FindWorkerProfile(int id, CancellationToken cancellationToken = default);
 
+        Task<WorkerProfileDTO> FindWorkerProfile(string email, CancellationToken cancellationToken = default);
+
         Task<CreateWorkerProfileDTO> AddWorkerProfile(CreateWorkerProfileDTO objDTO, CancellationToken cancellationToken = default);
 
         Task<UpdateWorkerProfileDTO> UpdateWorkerProfile(UpdateWorkerProfileDTO objDTO, CancellationToken cancellationToken = default);
