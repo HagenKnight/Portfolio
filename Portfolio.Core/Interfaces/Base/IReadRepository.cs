@@ -15,10 +15,15 @@ namespace Portfolio.Core.Interfaces.Base
         Task<IEnumerable<T>> AllAsync(string entityToInclude = null, CancellationToken cancellationToken = default);
         Task<IEnumerable<T>> AllAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default, string orderBy = null);
 
+        Task<IEnumerable<T>> AllAsync(Expression<Func<T, bool>> predicate, string entityToInclude = null, CancellationToken cancellationToken = default, string orderBy = null);
+
+
+
         Task<T> GetByIdAsync(int id, CancellationToken cancellationToken = default);
         //Task<T> FilterSingleAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default);
         Task<T> FilterSingleAsync(Expression<Func<T, bool>> predicate, string entityToInclude = null, CancellationToken cancellationToken = default);
-        Task<IEnumerable<T>> FilterAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default, string orderBy = null);
+        
+        Task<IEnumerable<T>> FilterAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default, string entityToInclude = null, string orderBy = null);
 
         Task<IEnumerable<T>> GetPagedAsync(int pageNumber, int pageSize, CancellationToken cancellationToken = default, string orderBy = null);
         Task<IEnumerable<T>> GetPagedAsync(int pageNumber, int pageSize, Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default, string orderBy = null);

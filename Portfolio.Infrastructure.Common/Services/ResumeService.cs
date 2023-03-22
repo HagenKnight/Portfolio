@@ -22,10 +22,8 @@ namespace Portfolio.Infrastructure.Common.Services
         {
         }
 
-        public Task<IEnumerable<ResumeDTO>> GetResumes(CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<IEnumerable<ResumeDTO>> GetResumes(int workerProfileId, CancellationToken cancellationToken = default) =>
+            await FilterAsync(u => u.WorkerProfileId == workerProfileId, cancellationToken, "ResumeType", null, "ResumeTypeId");
 
         public Task<ResumeDTO> FindResume(int id, CancellationToken cancellationToken = default)
         {

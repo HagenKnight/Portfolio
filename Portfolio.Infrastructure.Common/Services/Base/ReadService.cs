@@ -55,9 +55,12 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
                 throw new EntityNotFoundException(typeof(TEntity));
         }
 
-        public async Task<IEnumerable<TQueryDTO>> FilterAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default, string fields = null, string orderBy = null)
+        public async Task<IEnumerable<TQueryDTO>> FilterAsync(Expression<Func<TEntity, bool>> predicate,
+            CancellationToken cancellationToken = default,
+            string entityToInclude = null,
+            string fields = null, string orderBy = null)
         {
-            IEnumerable<TEntity> list = await _repository.FilterAsync(predicate, cancellationToken, orderBy);
+            IEnumerable<TEntity> list = await _repository.FilterAsync(predicate, cancellationToken, entityToInclude, orderBy);
 
             /* Limit query fields. */
             if (!string.IsNullOrWhiteSpace(fields))
@@ -91,6 +94,17 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
         public async Task<IEnumerable<TQueryDTO>> GetAllIncludeAsync(string entityToInclude = null, CancellationToken cancellationToken = default)
         {
             IEnumerable<TEntity> list = await _repository.AllAsync(entityToInclude, cancellationToken);
+            return Mapper.Map<IEnumerable<TQueryDTO>>(list);
+        }
+
+        public async Task<IEnumerable<TQueryDTO>> GetAllIncludeAsync(Expression<Func<TEntity, bool>> predicate, string entityToInclude = null, CancellationToken cancellationToken = default, string fields = null, string orderBy = null)
+        {
+            IEnumerable<TEntity> list = await _repository.AllAsync(predicate, entityToInclude, cancellationToken, orderBy);
+
+            /* Limit query fields. */
+            if (!string.IsNullOrWhiteSpace(fields))
+                list = list.AsQueryable().Select<TEntity>($"new({fields})");
+
             return Mapper.Map<IEnumerable<TQueryDTO>>(list);
         }
 

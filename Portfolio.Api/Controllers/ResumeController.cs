@@ -1,7 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Portfolio.Application.Features.Resume;
+using Portfolio.Application.Features.Resume.Queries;
 using Portfolio.Application.Models;
+using Portfolio.Core.DTO.Resume;
 using Portfolio.Core.DTO.Resume;
 using Portfolio.Core.DTO.Resume;
 using Portfolio.Core.DTO.Resume;
@@ -19,6 +22,11 @@ namespace Portfolio.Api.Controllers
 
         public ResumeController(IMediator mediator) => _mediator = mediator;
 
+
+
+        [HttpGet("{workerProfileid:int}")]
+        public async Task<IEnumerable<ResumeDTO>> GetResumes(int workerProfileid) =>
+            await _mediator.Send(new GetAllResumeQuery(workerProfileid));
 
 
         // POST: api/GetResume

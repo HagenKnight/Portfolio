@@ -35,8 +35,50 @@ namespace Portfolio.Infrastructure.Persistence.Repository.Base
         public async Task<IEnumerable<T>> AllAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default, string orderBy = null) =>
             (!string.IsNullOrEmpty(orderBy)) ? await _dbSet.OrderBy(orderBy).ToListAsync(cancellationToken) : await _dbSet.ToListAsync(cancellationToken);
 
-        public async Task<IEnumerable<T>> FilterAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default, string orderBy = null) =>
-            (!string.IsNullOrEmpty(orderBy)) ? await _dbSet.Where(predicate).OrderBy(orderBy).ToListAsync(cancellationToken) : await _dbSet.Where(predicate).ToListAsync(cancellationToken);
+        public async Task<IEnumerable<T>> AllAsync(Expression<Func<T, bool>> predicate, 
+            string entityToInclude = null, 
+            CancellationToken cancellationToken = default, 
+            string orderBy = null)
+        {
+            if (!string.IsNullOrEmpty(entityToInclude))
+            {
+                if (!string.IsNullOrEmpty(orderBy))
+                    return await _dbSet.Include(entityToInclude).OrderBy(orderBy).ToListAsync(cancellationToken);
+                else
+                    return await _dbSet.Include(entityToInclude).ToListAsync(cancellationToken);
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(orderBy))
+                    return await _dbSet.Include(entityToInclude).OrderBy(orderBy).ToListAsync(cancellationToken);
+                else
+                    return await _dbSet.ToListAsync(cancellationToken);
+
+            }
+        }
+
+
+        public async Task<IEnumerable<T>> FilterAsync(Expression<Func<T, bool>> predicate,
+            CancellationToken cancellationToken = default,
+            string entityToInclude = null,
+            string orderBy = null)
+        {
+            if (!string.IsNullOrEmpty(entityToInclude))
+            {
+                if (!string.IsNullOrEmpty(orderBy))
+                    return await _dbSet.Where(predicate).Include(entityToInclude).OrderBy(orderBy).ToListAsync(cancellationToken);
+                else
+                    return await _dbSet.Where(predicate).Include(entityToInclude).ToListAsync(cancellationToken);
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(orderBy))
+                    return await _dbSet.Where(predicate).OrderBy(orderBy).ToListAsync(cancellationToken);
+                else
+                    return await _dbSet.Where(predicate).ToListAsync(cancellationToken);
+            }
+
+        }
 
 
         public async Task<T> GetByIdAsync(int id, CancellationToken cancellationToken = default) =>
@@ -45,7 +87,7 @@ namespace Portfolio.Infrastructure.Persistence.Repository.Base
 
         public async Task<T> FilterSingleAsync(Expression<Func<T, bool>> predicate, string entityToInclude = null, CancellationToken cancellationToken = default)
         {
-            if(!string.IsNullOrEmpty(entityToInclude))
+            if (!string.IsNullOrEmpty(entityToInclude))
                 return await _dbSet.Include(entityToInclude).SingleOrDefaultAsync(predicate, cancellationToken);
             else
                 return await _dbSet.SingleOrDefaultAsync(predicate, cancellationToken);
