@@ -9,10 +9,7 @@ namespace Portfolio.Application.Features.WorkerProfile.Commands
     {
         private readonly IWorkerProfileService _workerProfilService;
 
-        public CreateWorkerProfileCommandHandler(IWorkerProfileService workerProfilService)
-        {
-            _workerProfilService = workerProfilService;
-        }
+        public CreateWorkerProfileCommandHandler(IWorkerProfileService workerProfilService) => _workerProfilService = workerProfilService;
 
         public async Task<ApiResponse<CreateWorkerProfileDTO>> Handle(CreateWorkerProfileDTO request, CancellationToken cancellationToken)
         {

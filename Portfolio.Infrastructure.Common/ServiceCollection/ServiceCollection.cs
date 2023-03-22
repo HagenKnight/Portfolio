@@ -19,11 +19,12 @@ namespace Portfolio.Infrastructure.Common.ServiceCollection
             services.AddTransient<IEntityRepository<PortfolioDbContext>, EntityRepository>();
             services.AddTransient<ICountryRepository<PortfolioDbContext>, CountryRepository>();
             services.AddTransient<IWorkerProfileRepository<PortfolioDbContext>, WorkerProfileRepository>();
+            services.AddTransient<IResumeRepository<PortfolioDbContext>, ResumeRepository>();
 
             /* Services */
-            services.AddTransient<IEntityService, EntityService>();
             services.AddTransient<ICountryService, CountryService>();
             services.AddTransient<IWorkerProfileService, WorkerProfileService>();
+            services.AddTransient<IResumeService, ResumeService>();
 
             /* Helpers */
             services.AddSingleton<IUriService>(o =>

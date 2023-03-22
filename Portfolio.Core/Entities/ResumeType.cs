@@ -8,7 +8,7 @@ namespace Portfolio.Core.Entities
         public string Name { get; set; } = string.Empty;
         
         // Navigation property
-        public Resume? Resume { get; set; }
+        public ICollection<Resume>? Resume { get; set; }
     }
 
     public enum ResumeTypeEnum

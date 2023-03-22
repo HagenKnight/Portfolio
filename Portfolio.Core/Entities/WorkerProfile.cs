@@ -18,8 +18,8 @@ namespace Portfolio.Core.Entities
         public virtual Country? Country { get; set; }
 
         // Navigation property
-        public Resume? Resume { get; set; }
-        public Service? Service { get; set; }
-        public Certificate? Certificate { get; set; }
+        public ICollection<Resume>? Resume { get; set; }
+        public ICollection<Service>? Service { get; set; }
+        public ICollection<Certificate>? Certificate { get; set; }
     }
 }

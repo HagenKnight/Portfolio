@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Portfolio.Application.Features.Entity;
 using Portfolio.Application.Features.WorkerProfile;
 using Portfolio.Application.Models;
 using Portfolio.Core.DTO.WorkerProfile;
@@ -46,6 +45,13 @@ namespace Portfolio.Api.Controllers
         [Authorize(Roles = CustomRoles.Administrator)]
         public async Task<ApiResponse<UpdateWorkerProfileDTO>> Put([FromBody] UpdateWorkerProfileDTO command) =>
             await _mediator.Send(command);
+
+        // DELETE: api/WorkerProfile
+        [HttpDelete()]
+        [Authorize(Roles = CustomRoles.Administrator)]
+        public async Task<ApiResponse<DeleteWorkerProfileDTO>> Delete([FromBody] DeleteWorkerProfileDTO command) =>
+            await _mediator.Send(command);
+
 
     }
 }

@@ -9,10 +9,7 @@ namespace Portfolio.Application.Features.WorkerProfile.Commands.UpdateWorkerProf
     {
         private readonly IWorkerProfileService _workerProfileService;
 
-        public UpdateWorkerProfileCommandHandler(IWorkerProfileService workerProfileService)
-        {
-            _workerProfileService = workerProfileService;
-        }
+        public UpdateWorkerProfileCommandHandler(IWorkerProfileService workerProfileService) => _workerProfileService = workerProfileService;
 
         public async Task<ApiResponse<UpdateWorkerProfileDTO>> Handle(UpdateWorkerProfileDTO request, CancellationToken cancellationToken)
         {

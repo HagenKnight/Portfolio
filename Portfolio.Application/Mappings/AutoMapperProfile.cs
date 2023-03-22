@@ -2,6 +2,7 @@
 using Portfolio.Application.Features.Country;
 using Portfolio.Core.Custom;
 using Portfolio.Core.DTO;
+using Portfolio.Core.DTO.Resume;
 using Portfolio.Core.DTO.WorkerProfile;
 using Portfolio.Core.Entities;
 
@@ -27,6 +28,13 @@ namespace Portfolio.Application.Mappings
             CreateMap<WorkerProfile, DeleteWorkerProfileDTO>().ReverseMap();
             CreateMap<WorkerProfileDTO, DeleteWorkerProfileDTO>().ReverseMap();
 
+            CreateMap<Resume, ResumeDTO>().ReverseMap();
+            CreateMap<Resume, CreateResumeDTO>().ReverseMap();
+            CreateMap<ResumeDTO, CreateResumeDTO>().ReverseMap();
+            CreateMap<Resume, UpdateResumeDTO>().ReverseMap();
+            CreateMap<ResumeDTO, UpdateResumeDTO>().ReverseMap();
+            CreateMap<Resume, DeleteResumeDTO>().ReverseMap();
+            CreateMap<ResumeDTO, DeleteResumeDTO>().ReverseMap();
 
             CreateMap<Entity, EntityDTO>().ReverseMap();
             CreateMap<Entity, CreateEntityDTO>().ReverseMap();

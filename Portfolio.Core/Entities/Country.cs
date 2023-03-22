@@ -10,6 +10,6 @@ namespace Portfolio.Core.Entities
         public string ISO3 { get; set; } = string.Empty;
 
         // Navigation property
-        public WorkerProfile? WorkerProfile { get; set; }
+        public ICollection<WorkerProfile>? WorkerProfile { get; set; }
     }
 }

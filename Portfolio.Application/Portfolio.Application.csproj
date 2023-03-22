@@ -25,6 +25,7 @@
 	  <Folder Include="Features\Country\Commands\CreateCountry\" />
 	  <Folder Include="Features\Country\Commands\DeleteCountry\" />
 	  <Folder Include="Features\Country\Commands\UpdateCountry\" />
+	  <Folder Include="Features\Resume\Queries\" />
 	</ItemGroup>
 
 </Project>
