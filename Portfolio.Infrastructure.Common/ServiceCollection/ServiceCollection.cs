@@ -16,14 +16,15 @@ namespace Portfolio.Infrastructure.Common.ServiceCollection
         public static void AddCommonLayer(this IServiceCollection services)
         {
             /* Repositories */
-            services.AddTransient<IEntityRepository<PortfolioDbContext>, EntityRepository>();
             services.AddTransient<ICountryRepository<PortfolioDbContext>, CountryRepository>();
             services.AddTransient<IWorkerProfileRepository<PortfolioDbContext>, WorkerProfileRepository>();
+            services.AddTransient<IResumeTypeRepository<PortfolioDbContext>, ResumeTypeRepository>();
             services.AddTransient<IResumeRepository<PortfolioDbContext>, ResumeRepository>();
 
             /* Services */
             services.AddTransient<ICountryService, CountryService>();
             services.AddTransient<IWorkerProfileService, WorkerProfileService>();
+            services.AddTransient<IResumeTypeService, ResumeTypeService>();
             services.AddTransient<IResumeService, ResumeService>();
 
             /* Helpers */

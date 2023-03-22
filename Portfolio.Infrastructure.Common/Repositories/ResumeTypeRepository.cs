@@ -6,12 +6,10 @@ using Portfolio.Infrastructure.Persistence.Repository.Base;
 
 namespace Portfolio.Infrastructure.Common.Repositories
 {
-    public class EntityRepository
-        : BaseRepository<Entity, int, PortfolioDbContext>, IEntityRepository<PortfolioDbContext>
+    public class ResumeTypeRepository : BaseRepository<ResumeType, int, PortfolioDbContext>, IResumeTypeRepository<PortfolioDbContext>
     {
-        private readonly PortfolioDbContext _portfolioDbContext;
-        public EntityRepository(IDbFactory<PortfolioDbContext> dbFactory) : base(dbFactory) { }
-
-
+        public ResumeTypeRepository(IDbFactory<PortfolioDbContext> dbFactory) : base(dbFactory)
+        {
+        }
     }
 }

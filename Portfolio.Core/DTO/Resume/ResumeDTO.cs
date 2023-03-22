@@ -5,7 +5,7 @@ using Portfolio.Core.Wrappers;
 
 namespace Portfolio.Core.DTO.Resume
 {
-    public class ResumeDTO : CommandDTO, IRequest<ApiResponse<CreateResumeDTO>>
+    public class ResumeDTO
     {
         public int Id { get; set; }
         public string InstitutionName { get; set; } = string.Empty;

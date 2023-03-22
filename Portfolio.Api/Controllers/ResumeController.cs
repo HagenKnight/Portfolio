@@ -17,10 +17,7 @@ namespace Portfolio.Api.Controllers
 
         private readonly IMediator _mediator;
 
-        public ResumeController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+        public ResumeController(IMediator mediator) => _mediator = mediator;
 
 
 

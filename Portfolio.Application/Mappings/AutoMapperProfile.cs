@@ -3,6 +3,7 @@ using Portfolio.Application.Features.Country;
 using Portfolio.Core.Custom;
 using Portfolio.Core.DTO;
 using Portfolio.Core.DTO.Resume;
+using Portfolio.Core.DTO.ResumeType;
 using Portfolio.Core.DTO.WorkerProfile;
 using Portfolio.Core.Entities;
 
@@ -36,13 +37,14 @@ namespace Portfolio.Application.Mappings
             CreateMap<Resume, DeleteResumeDTO>().ReverseMap();
             CreateMap<ResumeDTO, DeleteResumeDTO>().ReverseMap();
 
-            CreateMap<Entity, EntityDTO>().ReverseMap();
-            CreateMap<Entity, CreateEntityDTO>().ReverseMap();
-            CreateMap<EntityDTO, CreateEntityDTO>().ReverseMap();
-            CreateMap<Entity, UpdateEntityDTO>().ReverseMap();
-            CreateMap<EntityDTO, UpdateEntityDTO>().ReverseMap();
-            CreateMap<Entity, DeleteEntityDTO>().ReverseMap();
-            CreateMap<EntityDTO, DeleteEntityDTO>().ReverseMap();
+            CreateMap<ResumeType, ResumeTypeDTO>().ReverseMap();
+            CreateMap<ResumeType, CreateResumeTypeDTO>().ReverseMap();
+            CreateMap<ResumeTypeDTO, CreateResumeTypeDTO>().ReverseMap();
+            CreateMap<ResumeType, UpdateResumeTypeDTO>().ReverseMap();
+            CreateMap<ResumeTypeDTO, UpdateResumeTypeDTO>().ReverseMap();
+            CreateMap<ResumeType, DeleteResumeTypeDTO>().ReverseMap();
+            CreateMap<ResumeTypeDTO, DeleteResumeTypeDTO>().ReverseMap();
+
         }
     }
 }
