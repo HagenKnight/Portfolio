@@ -1,0 +1,60 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="content__header content__boxed rounded-0">
+    <div class="content__wrap">
+
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="./index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="./other-pages.html">Other Pages</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Blank Page</li>
+            </ol>
+        </nav>
+        <!-- END : Breadcrumb -->
+        <!-- Page title and information -->
+        <h1 class="page-title mb-2"> <i class="fa-regular fa-id-badge"></i> Portfolio Dashboard</h1>
+        <h2 class="h5">Welcome back to the Dashboard.</h2>
+        <p>Scroll down to see quick links and overviews of your Server, To do list<br> Order status or get some Help using Nifty.</p>
+        <!-- END : Page title and information -->
+
+    </div>
+
+</div>
+
+<div class="content__boxed">
+    <div class="content__wrap">
+        <div class="card text-center mb-4 col-xl-8 offset-xl-2">
+            <div class="card-header">Header</div>
+            <div class="card-body">
+
+                <h5 class="card-title">Card Title Here</h5>
+
+                <p class="mb-5">
+                    Start putting content on grids or panels, you can also use different combinations of grids.
+                    <br>Please check out the dashboard and other pages.
+                </p>
+
+                <button class="nav-toggler btn btn-warning btn-lg mb-3">Toggle Navigation</button>
+                <button class="btn btn-light" onclick="disableRoundedHeader()">Rounded header</button>
+                <button class="btn btn-primary" onclick="changeContentHeader()">Overlapping</button>
+
+                <script>
+                    function changeContentHeader() {
+                        document.querySelector("#content > .content__header").classList.toggle("overlapping");
+                    }
+
+                    function disableRoundedHeader() {
+                        document.querySelector("#content > .content__header").classList.toggle("rounded-0");
+                    }
+                </script>
+
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,525 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Portfolio.DashboardMvc</title>
+
+    <!-- Fonts [ OPTIONAL ] -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @*<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />*@
+
+    <link rel="stylesheet" href="~/vendors/fontawesome/css/all.css" />
+    <link rel="stylesheet" href="~/css/nifty.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/vendors/demo-icons/demo-icons.min.css" />
+    <link rel="stylesheet" href="~/vendors/demo-icons/demo-settings.min.css" />
+
+
+    <link rel="stylesheet" href="~/Portfolio.DashboardMvc.styles.css" asp-append-version="true" />
+</head>
+<body class="jumping">
+
+
+    <!-- PAGE CONTAINER -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <div id="root" class="root mn--sticky mn--max hd--expanded">
+
+        <!-- CONTENTS -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <section id="content" class="content">
+
+            @RenderBody()
+           
+            <!-- FOOTER -->
+            <footer class="content__boxed mt-auto">
+                <div class="content__wrap py-3 py-md-1 d-flex flex-column flex-md-row align-items-md-center">
+                    <div class="text-nowrap mb-4 mb-md-0">Copyright &copy; 2023 <a href="#" class="ms-1 btn-link fw-bold">Kasei Technologies</a></div>
+                    <nav class="nav flex-column gap-1 flex-md-row gap-md-3 ms-md-auto" style="row-gap: 0 !important;">
+                        <a class="nav-link px-0" href="#">Contact Us</a>
+                    </nav>
+                </div>
+            </footer>
+            <!-- END - FOOTER -->
+
+        </section>
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- END - CONTENTS -->
+
+        <!-- HEADER -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <header class="header">
+            <div class="header__inner">
+
+                <!-- Brand -->
+                <div class="header__brand">
+                    <div class="brand-wrap">
+
+                        <!-- Brand logo -->
+                        <a href="./index.html" class="brand-img stretched-link">
+                            <img src="./img/rocket.svg" alt="Kasei Logo" class="Nifty logo" width="40" height="40">
+                        </a>
+
+                        <!-- Brand title -->
+                        <div class="brand-title">Kasei Technologies</div>
+
+                        <!-- You can also use IMG or SVG instead of a text element. -->
+
+                    </div>
+                </div>
+                <!-- End - Brand -->
+
+                <div class="header__content">
+
+                    <!-- Content Header - Left Side: -->
+                    <div class="header__content-start">
+
+                        <!-- Navigation Toggler -->
+                        <button type="button" class="nav-toggler header__btn btn btn-icon btn-sm" aria-label="Nav Toggler">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+
+                        <!-- Searchbox -->
+                        <div class="header-searchbox">
+
+                            <!-- Searchbox toggler for small devices -->
+                            <label for="header-search-input" class="header__btn d-md-none btn btn-icon rounded-pill shadow-none border-0 btn-sm" type="button">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </label>
+
+                            <!-- Searchbox input -->
+                            <form class="searchbox searchbox--auto-expand searchbox--hide-btn input-group">
+                                <input id="header-search-input" class="searchbox__input form-control bg-transparent" type="search" placeholder="Type for search . . ." aria-label="Search">
+                                <div class="searchbox__backdrop">
+                                    <button class="searchbox__btn header__btn btn btn-icon rounded shadow-none border-0 btn-sm" type="button" id="button-addon2">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- End - Content Header - Left Side -->
+                    <!-- Content Header - Right Side: -->
+                    <div class="header__content-end">
+
+                        <!-- Notification Dropdown -->
+                        <div class="dropdown">
+
+                            <!-- Toggler -->
+                            <button class="header__btn btn btn-icon btn-sm" type="button" data-bs-toggle="dropdown" aria-label="Notification dropdown" aria-expanded="false">
+                                <span class="d-block position-relative">
+                                    <i class="fa-solid fa-bell"></i>
+                                    <span class="badge badge-super rounded bg-danger p-1">
+
+                                        <span class="visually-hidden">unread messages</span>
+                                    </span>
+                                </span>
+                            </button>
+
+                            <!-- Notification dropdown menu -->
+                            <div class="dropdown-menu dropdown-menu-end w-md-300px">
+                                <div class="border-bottom px-3 py-2 mb-3">
+                                    <h5>Notifications</h5>
+                                </div>
+
+                                <div class="list-group list-group-borderless">
+
+                                    <!-- List item -->
+                                    <div class="list-group-item list-group-item-action d-flex align-items-start mb-3">
+                                        <div class="flex-shrink-0 me-3">
+                                            @*<i class="demo-psi-data-settings text-muted fs-2"></i>*@
+                                            <i class="fa-solid fa-hard-drive text-muted fa-lg"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ">
+                                            <a href="#" class="h6 d-block mb-0 stretched-link text-decoration-none">Your storage is full</a>
+                                            <small class="text-muted">Local storage is nearly full.</small>
+                                        </div>
+                                    </div>
+
+                                    <!-- List item -->
+                                    <div class="list-group-item list-group-item-action d-flex align-items-start mb-3">
+                                        <div class="flex-shrink-0 me-3">
+                                            <i class="demo-psi-file-edit text-blue-200 fs-2"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ">
+                                            <a href="#" class="h6 d-block mb-0 stretched-link text-decoration-none">Writing a New Article</a>
+                                            <small class="text-muted">Wrote a news article for the John Mike</small>
+                                        </div>
+                                    </div>
+
+                                    <!-- List item -->
+                                    <div class="list-group-item list-group-item-action d-flex align-items-start mb-3">
+                                        <div class="flex-shrink-0 me-3">
+                                            <i class="demo-psi-speech-bubble-7 text-green-300 fs-2"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ">
+                                            <div class="d-flex justify-content-between align-items-start">
+                                                <a href="#" class="h6 mb-0 stretched-link text-decoration-none">Comment sorting</a>
+                                                <span class="badge bg-info rounded ms-auto">NEW</span>
+                                            </div>
+                                            <small class="text-muted">You have 1,256 unsorted comments.</small>
+                                        </div>
+                                    </div>
+
+                                    <!-- List item -->
+                                    <div class="list-group-item list-group-item-action d-flex align-items-start mb-3">
+                                        <div class="flex-shrink-0 me-3">
+                                            <img class="img-xs rounded-circle" src="./assets/img/profile-photos/7.png" alt="Profile Picture" loading="lazy">
+                                        </div>
+                                        <div class="flex-grow-1 ">
+                                            <a href="#" class="h6 d-block mb-0 stretched-link text-decoration-none">Lucy Sent you a message</a>
+                                            <small class="text-muted">30 minutes ago</small>
+                                        </div>
+                                    </div>
+
+                                    <!-- List item -->
+                                    <div class="list-group-item list-group-item-action d-flex align-items-start mb-3">
+                                        <div class="flex-shrink-0 me-3">
+                                            <img class="img-xs rounded-circle" src="./assets/img/profile-photos/3.png" alt="Profile Picture" loading="lazy">
+                                        </div>
+                                        <div class="flex-grow-1 ">
+                                            <a href="#" class="h6 d-block mb-0 stretched-link text-decoration-none">Jackson Sent you a message</a>
+                                            <small class="text-muted">1 hours ago</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center mb-2">
+                                        <a href="#" class="btn-link">Show all Notifications</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End - Notification dropdown -->
+                        <!-- User dropdown -->
+                        <div class="dropdown">
+
+                            <!-- Toggler -->
+                            <button class="header__btn btn btn-icon btn-sm" type="button" data-bs-toggle="dropdown" aria-label="User dropdown" aria-expanded="false">
+                                <i class="demo-psi-male"></i>
+                            </button>
+
+                            <!-- User dropdown menu -->
+                            <div class="dropdown-menu dropdown-menu-end w-md-450px">
+
+                                <!-- User dropdown header -->
+                                <div class="d-flex align-items-center border-bottom px-3 py-2">
+                                    <div class="flex-shrink-0">
+                                        <img class="img-sm rounded-circle" src="./assets/img/profile-photos/1.png" alt="Profile Picture" loading="lazy">
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <h5 class="mb-0">Aaron Chavez</h5>
+                                        <span class="text-muted fst-italic">aaron_chavez@example.com</span>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-7">
+
+                                        <!-- Simple widget and reports -->
+                                        <div class="list-group list-group-borderless mb-3">
+                                            <div class="list-group-item text-center border-bottom mb-3">
+                                                <p class="h1 display-1 text-green">17</p>
+                                                <p class="h6 mb-0"><i class="demo-pli-basket-coins fs-3 me-2"></i> New orders</p>
+                                                <small class="text-muted">You have new orders</small>
+                                            </div>
+                                            <div class="list-group-item py-0 d-flex justify-content-between align-items-center">
+                                                Today Earning
+                                                <small class="fw-bolder">$578</small>
+                                            </div>
+                                            <div class="list-group-item py-0 d-flex justify-content-between align-items-center">
+                                                Tax
+                                                <small class="fw-bolder text-danger">- $28</small>
+                                            </div>
+                                            <div class="list-group-item py-0 d-flex justify-content-between align-items-center">
+                                                Total Earning
+                                                <span class="fw-bold text-primary">$6,578</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-5">
+
+                                        <!-- User menu link -->
+                                        <div class="list-group list-group-borderless h-100 py-3">
+                                            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                                <span><i class="demo-pli-mail fs-5 me-2"></i> Messages</span>
+                                                <span class="badge bg-danger rounded-pill">14</span>
+                                            </a>
+                                            <a href="#" class="list-group-item list-group-item-action">
+                                                <i class="demo-pli-male fs-5 me-2"></i> Profile
+                                            </a>
+                                            <a href="#" class="list-group-item list-group-item-action">
+                                                <i class="demo-pli-gear fs-5 me-2"></i> Settings
+                                            </a>
+
+                                            <a href="#" class="list-group-item list-group-item-action mt-auto">
+                                                <i class="demo-pli-computer-secure fs-5 me-2"></i> Lock screen
+                                            </a>
+                                            <a href="#" class="list-group-item list-group-item-action">
+                                                <i class="demo-pli-unlock fs-5 me-2"></i> Logout
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- End - User dropdown -->
+
+
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- END - HEADER -->
+        <!-- MAIN NAVIGATION -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <nav id="mainnav-container" class="mainnav">
+            <div class="mainnav__inner">
+
+                <!-- Navigation menu -->
+                <div class="mainnav__top-content scrollable-content pb-5">
+
+                    <!-- Profile Widget -->
+                    <div class="mainnav__profile mt-3 d-flex3">
+
+                        <div class="mt-2 d-mn-max"></div>
+
+                        <!-- Profile picture  -->
+                        <div class="mininav-toggle text-center py-2">
+                            <img class="mainnav__avatar img-md rounded-circle border" src="./img/3.png" alt="Profile Picture">
+                        </div>
+
+                        <div class="mininav-content collapse d-mn-max">
+                            <div class="d-grid">
+
+                                <!-- User name and position -->
+                                <button class="d-block btn shadow-none p-2" data-bs-toggle="collapse" data-bs-target="#usernav" aria-expanded="false" aria-controls="usernav">
+                                    <span class="dropdown-toggle d-flex justify-content-center align-items-center">
+                                        <h6 class="mb-0 me-3">{FirstName} {LastName}</h6>
+                                    </span>
+                                    <small class="text-muted">{Role}</small>
+                                </button>
+
+                                <!-- Collapsed user menu -->
+                                <div id="usernav" class="nav flex-column collapse">
+                                    <a href="#" class="nav-link d-flex justify-content-between align-items-center">
+                                        <span><i class="demo-pli-mail fs-5 me-2"></i><span class="ms-1">Messages</span></span>
+                                        <span class="badge bg-danger rounded-pill">14</span>
+                                    </a>
+                                    <a href="#" class="nav-link">
+                                        <i class="demo-pli-male fs-5 me-2"></i>
+                                        <span class="ms-1">Profile</span>
+                                    </a>
+                                    <a href="#" class="nav-link">
+                                        <i class="demo-pli-gear fs-5 me-2"></i>
+                                        <span class="ms-1">Settings</span>
+                                    </a>
+                                    <a href="#" class="nav-link">
+                                        <i class="demo-pli-computer-secure fs-5 me-2"></i>
+                                        <span class="ms-1">Lock screen</span>
+                                    </a>
+                                    <a href="#" class="nav-link">
+                                        <i class="demo-pli-unlock fs-5 me-2"></i>
+                                        <span class="ms-1">Logout</span>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- End - Profile widget -->
+                    <!-- Navigation Category -->
+                    <div class="mainnav__categoriy py-3">
+                        <h6 class="mainnav__caption mt-0 px-3 fw-bold">Navigation</h6>
+                        <ul class="mainnav__menu nav flex-column">
+
+                            <!-- Link with submenu -->
+                            <li class="nav-item has-sub">
+
+                                <a href="#" class="mininav-toggle nav-link active">
+                                    <i class="demo-pli-home fs-5 me-2"></i>
+                                    <span class="nav-label ms-1">Dashboard</span>
+                                </a>
+
+                                <!-- Dashboard submenu list -->
+                                <ul class="mininav-content nav collapse ">
+                                    <li class="nav-item">
+                                        <a href="./index.html" class="nav-link">Dashboard 1</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="./dashboard-2.html" class="nav-link">Dashboard 2</a>
+                                    </li>
+                                </ul>
+                                <!-- END : Dashboard submenu list -->
+
+                            </li>
+                            <!-- END : Link with submenu -->
+                            <!-- Link with submenu -->
+                            <li class="nav-item has-sub">
+
+                                <a href="#" class="mininav-toggle nav-link collapsed">
+                                    <i class="demo-pli-split-vertical-2 fs-5 me-2"></i>
+                                    <span class="nav-label ms-1">Layouts</span>
+                                </a>
+
+                                <!-- Layouts submenu list -->
+                                <ul class="mininav-content nav collapse">
+                                    <li class="nav-item">
+                                        <a href="./layouts-mini-navigation.html" class="nav-link">Mini Navigation</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="./layouts-push-navigation.html" class="nav-link">Push Navigation</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="./layouts-slide-navigation.html" class="nav-link">Slide Navigation</a>
+                                    </li>
+
+                                </ul>
+                                <!-- END : Layouts submenu list -->
+
+                            </li>
+                            <!-- END : Link with submenu -->
+                            <!-- Regular menu link -->
+                            <li class="nav-item">
+                                <a href="./widgets.html" class="nav-link mininav-toggle">
+                                    <i class="demo-pli-gear fs-5 me-2"></i>
+
+                                    <span class="nav-label mininav-content ms-1">Widgets</span>
+                                </a>
+                            </li>
+                            <!-- END : Regular menu link -->
+
+                        </ul>
+                    </div>
+                    <!-- END : Navigation Category -->
+                    <!-- Components Category -->
+                    <div class="mainnav__categoriy py-3">
+                        <h6 class="mainnav__caption mt-0 px-3 fw-bold">Components</h6>
+                        <ul class="mainnav__menu nav flex-column">
+
+                            <!-- Link with submenu -->
+                            <li class="nav-item has-sub">
+
+                                <a href="#" class="mininav-toggle nav-link collapsed">
+                                    <i class="demo-pli-boot-2 fs-5 me-2"></i>
+                                    <span class="nav-label ms-1">Ui Elements</span>
+                                </a>
+
+                                <!-- Ui Elements submenu list -->
+                                <ul class="mininav-content nav collapse">
+                                    <li class="nav-item">
+                                        <a href="./ui-elements-progress.html" class="nav-link">Progress</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="./ui-elements-placeholders.html" class="nav-link d-flex align-items-center">Placeholders<span class="badge bg-danger ms-auto">NEW</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="./ui-elements-tabs-and-accordions.html" class="nav-link">Tabs &amp; Accordions</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="./ui-elements-components.html" class="nav-link">Components</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="./ui-elements-tooltips-and-popover.html" class="nav-link">Tooltips &amp; Popover</a>
+                                    </li>
+
+                                </ul>
+                                <!-- END : Ui Elements submenu list -->
+
+                            </li>
+                            <!-- END : Link with submenu -->
+                            <!-- Link with submenu -->
+                            <li class="nav-item has-sub">
+
+                                <a href="#" class="mininav-toggle nav-link collapsed">
+                                    <i class="demo-pli-pen-5 fs-5 me-2"></i>
+                                    <span class="nav-label ms-1">Forms</span>
+                                </a>
+
+                                <!-- Forms submenu list -->
+                                <ul class="mininav-content nav collapse">
+                                    <li class="nav-item">
+                                        <a href="./forms-general.html" class="nav-link">General</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="./forms-tags.html" class="nav-link">Tags</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="./forms-date-time-picker.html" class="nav-link">Date Time Picker</a>
+                                    </li>
+                                </ul>
+                                <!-- END : Forms submenu list -->
+
+                            </li>
+                            <!-- END : Link with submenu -->
+
+                        </ul>
+                    </div>
+                    <!-- END : Components Category -->
+
+
+                </div>
+                <!-- End - Navigation menu -->
+                <!-- Bottom navigation menu -->
+                <div class="mainnav__bottom-content border-top pb-2">
+                    <ul id="mainnav" class="mainnav__menu nav flex-column">
+                        <li class="nav-item has-sub">
+                            <a href="#" class="nav-link mininav-toggle collapsed" aria-expanded="false">
+                                <i class="demo-pli-unlock fs-5 me-2"></i>
+                                <span class="nav-label ms-1">Logout</span>
+                            </a>
+                            <ul class="mininav-content nav flex-column collapse">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">This device only</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">All Devices</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Lock screen</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End - Bottom navigation menu -->
+
+            </div>
+        </nav>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- END - MAIN NAVIGATION -->
+
+    </div>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- END - PAGE CONTAINER -->
+
+    <!-- SCROLL TO TOP BUTTON -->
+    <div class="scroll-container">
+        <a href="#root" class="scroll-page rounded-circle ratio ratio-1x1" aria-label="Scroll button"></a>
+    </div>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- END - SCROLL TO TOP BUTTON -->
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/vendors/popperjs/popper.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/nifty/nifty.min.js"></script>
+    
+    <script src="~/js/demo/demo-purpose-only.min.js"></script>
+
+    <script src="~/vendors/chart.js/chart.min.js"></script>
+    <script src="~/js/demo/dashboard-1.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

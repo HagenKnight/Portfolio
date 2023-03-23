@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Portfolio.Infrastructure.UnitOfWork": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:64483;http://localhost:64484"
+    }
+  }
+}

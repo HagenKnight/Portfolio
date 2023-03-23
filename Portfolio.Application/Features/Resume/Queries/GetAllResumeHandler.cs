@@ -10,7 +10,13 @@ namespace Portfolio.Application.Features.Resume.Queries
 
         public GetAllResumeHandler(IResumeService resumeService) => _resumeService = resumeService;
 
-        public async Task<IEnumerable<ResumeDTO>> Handle(GetAllResumeQuery request, CancellationToken cancellationToken) =>
-            await _resumeService.GetResumes(request.WorkerProfileId, cancellationToken);
+        public async Task<IEnumerable<ResumeDTO>> Handle(GetAllResumeQuery request, CancellationToken cancellationToken)
+        {
+            var listOfResumes = await _resumeService.GetResumes(request.WorkerProfileId, cancellationToken);
+
+            var lists = listOfResumes.OrderBy(d => d.ResumeTypeId).ThenByDescending(d => d.StartDate);
+
+            return lists.AsQueryable();
+        }
     }
 }

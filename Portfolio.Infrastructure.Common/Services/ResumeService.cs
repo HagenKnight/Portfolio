@@ -23,7 +23,7 @@ namespace Portfolio.Infrastructure.Common.Services
         }
 
         public async Task<IEnumerable<ResumeDTO>> GetResumes(int workerProfileId, CancellationToken cancellationToken = default) =>
-            await FilterAsync(u => u.WorkerProfileId == workerProfileId, cancellationToken, "ResumeType", null, "ResumeTypeId");
+            await FilterAsync(u => u.WorkerProfileId == workerProfileId, cancellationToken, "ResumeType");
 
         public Task<ResumeDTO> FindResume(int id, CancellationToken cancellationToken = default)
         {
