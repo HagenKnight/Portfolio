@@ -1,0 +1,8 @@
+﻿body {
+    background-image: url(../img/mars-01.jpg);
+    background-size: cover;
+}
+
+.front-container {
+    background-color: #0000;
+}
