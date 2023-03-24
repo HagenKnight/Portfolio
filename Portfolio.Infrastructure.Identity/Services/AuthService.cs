@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Portfolio.Application.Contracts.Identity;
 using Portfolio.Application.Models.Identity;
 using Portfolio.Core.Identity;
+using Portfolio.Infrastructure.Identity.Authorization;
 using Portfolio.Infrastructure.Identity.Constants;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -28,11 +29,11 @@ namespace Portfolio.Infrastructure.Identity.Services
         {
             var user = await _userManager.FindByEmailAsync(request.Email);
             if (user == null)
-                throw new Exception($"El Usuario com email {request.Email} no existe.");
+                throw new AuthorizationException("403", $"El Usuario com email {request.Email} no existe.");
 
             var resultado = await _signInManager.PasswordSignInAsync(user.UserName, request.Password, false, lockoutOnFailure: false);
             if (!resultado.Succeeded)
-                throw new Exception($"Las credenciales no son correctas");
+                throw new AuthorizationException("401", $"Las credenciales no son correctas");
 
             var token = await GenerateToken(user);
             var authResponse = new AuthResponse

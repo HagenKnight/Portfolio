@@ -1,0 +1,70 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <meta name="description" content="Page not found or file not found error message is a hypertext transfer protocol (HTTP) standard response code">
+    <title>@ViewData["Title"]</title>
+
+    <!-- STYLESHEETS -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--- -->
+    <!-- Fonts [ OPTIONAL ] -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS [ REQUIRED ] -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- Nifty CSS [ REQUIRED ] -->
+    <link rel="stylesheet" href="~/css/nifty.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="~/css/error.css" />
+</head>
+<body>
+    <!-- PAGE CONTAINER -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <div id="root" class="root front-container">
+
+        <!-- CONTENTS -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <section id="content" class="content">
+            <div class="content__boxed">
+                <div class="card rounded-0 w-100 min-vh-100 d-flex flex-column align-items-stretch justify-content-center">
+                    <div class="content__wrap">
+                        @RenderBody()
+
+                        <!-- Action buttons -->
+                        <div class="d-flex justify-content-center gap-3 mt-4">
+                            <button type="button" onclick="window.history.back()" class="btn btn-light">Go back</button>
+                            <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Return home</a>
+                        </div>
+                        <!-- END : Action buttons -->
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- END - CONTENTS -->
+
+    </div>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- END - PAGE CONTAINER -->
+    <!-- JAVASCRIPTS -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- Popper JS [ OPTIONAL ] -->
+    <!-- Bootstrap JS [ OPTIONAL ] -->
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Nifty JS [ OPTIONAL ] -->
+    @*<script src="~/lib/nifty/nifty.min.js"></script>*@
+
+</body>
+</html>
