@@ -69,7 +69,7 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
             return Mapper.Map<IEnumerable<TQueryDTO>>(list);
         }
 
-        public async Task<IEnumerable<TQueryDTO>> GetAllAsync(CancellationToken cancellationToken = default, string fields = null, string orderBy = null)
+        public async Task<IEnumerable<TQueryDTO>> GetAllAsync(CancellationToken cancellationToken = default, string? fields = null, string? orderBy = null)
         {
             IEnumerable<TEntity> list = await _repository.AllAsync(orderBy, cancellationToken);
 

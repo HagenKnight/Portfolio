@@ -97,9 +97,10 @@ namespace Portfolio.Infrastructure.Identity.Services
 
             var claims = new[]
             {
+                new Claim(CustomClaimTypes.Uid, user.Id),
                 new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim(CustomClaimTypes.Uid, user.Id)
+                new Claim(JwtRegisteredClaimNames.Name, $"{user.FirstName} {user.Lastname}"),
             }.Union(userClaims).Union(roleClaims);
 
             //"saint-seiya"

@@ -9,7 +9,7 @@ namespace Portfolio.Infrastructure.Identity.Authorization
         public string Details { get; set; }
         public LogLevel LogLevel { get; set; }
 
-        public AuthorizationException(string code = null, string message = null, string details = null,
+        public AuthorizationException(string? code = null, string? message = null, string? details = null,
                                  Exception innerException = null, LogLevel logLevel = LogLevel.Warning)
             : base(message, innerException) { Code = code; Details = details; LogLevel = logLevel; }
 

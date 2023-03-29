@@ -1,6 +1,6 @@
-﻿using Portfolio.Api.ServiceCollection;
+﻿using Portfolio.WebDashboard.ServiceCollection;
 
-namespace Portfolio.Api
+namespace Portfolio.WebDashboard
 {
     public class Startup
     {
@@ -13,14 +13,13 @@ namespace Portfolio.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            ConfigureServiceExtension.InitConfigurationAPI(services, Configuration);
+            ConfigureServiceExtension.InitConfigurationApp(services, Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            AppBuilderExtension.InitConfigurationAPI(app, env);
+            WebAppBuilderExtension.InitConfigurationWebApp(app, env);
         }
-
     }
 }

@@ -50,7 +50,7 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
                 throw new EntityNotFoundException(typeof(TEntity), id);
         }
 
-        public async Task<TQueryDTO> GetSingleAsync(Expression<Func<TEntity, bool>> predicate, string entityToInclude = null, CancellationToken cancellationToken = default)
+        public async Task<TQueryDTO> GetSingleAsync(Expression<Func<TEntity, bool>> predicate, string? entityToInclude = null, CancellationToken cancellationToken = default)
         {
             TEntity getEntity = await _repository.FilterSingleAsync(predicate, entityToInclude, cancellationToken);
 
@@ -65,8 +65,8 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
         public async Task<IEnumerable<TQueryDTO>> FilterAsync(Expression<Func<TEntity, bool>> predicate, 
             CancellationToken cancellationToken = default, 
             string entityToInclude = null, 
-            string fields = null, 
-            string orderBy = null)
+            string? fields = null, 
+            string? orderBy = null)
         {
             IEnumerable<TEntity> list = await _repository.FilterAsync(predicate, cancellationToken, entityToInclude, orderBy);
 
@@ -77,7 +77,7 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
             return Mapper.Map<IEnumerable<TQueryDTO>>(list);
         }
 
-        public async Task<IEnumerable<TQueryDTO>> GetAllAsync(CancellationToken cancellationToken = default, string fields = null, string orderBy = null)
+        public async Task<IEnumerable<TQueryDTO>> GetAllAsync(CancellationToken cancellationToken = default, string? fields = null, string? orderBy = null)
         {
 	        IEnumerable<TEntity> list = await _repository.AllAsync(orderBy, cancellationToken);
 	
@@ -88,7 +88,7 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
 	        return Mapper.Map<IEnumerable<TQueryDTO>>(list);
         }
 
-        public async Task<IEnumerable<TQueryDTO>> GetAllAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default, string fields = null, string orderBy = null)
+        public async Task<IEnumerable<TQueryDTO>> GetAllAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default, string? fields = null, string orderBy = null)
         {
             IEnumerable<TEntity> list = await _repository.AllAsync(predicate, cancellationToken, orderBy);
 
@@ -99,13 +99,13 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
             return Mapper.Map<IEnumerable<TQueryDTO>>(list);
         }
 
-        public async Task<IEnumerable<TQueryDTO>> GetAllIncludeAsync(string entityToInclude = null, CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<TQueryDTO>> GetAllIncludeAsync(string? entityToInclude = null, CancellationToken cancellationToken = default)
         {
             IEnumerable<TEntity> list = await _repository.AllAsync(entityToInclude, cancellationToken);
             return Mapper.Map<IEnumerable<TQueryDTO>>(list);
         }
 
-        public async Task<IEnumerable<TQueryDTO>> GetAllIncludeAsync(Expression<Func<TEntity, bool>> predicate, string entityToInclude = null, CancellationToken cancellationToken = default, string fields = null, string orderBy = null)
+        public async Task<IEnumerable<TQueryDTO>> GetAllIncludeAsync(Expression<Func<TEntity, bool>> predicate, string entityToInclude = null, CancellationToken cancellationToken = default, string? fields = null, string orderBy = null)
         {
             IEnumerable<TEntity> list = await _repository.AllAsync(predicate, entityToInclude, cancellationToken, orderBy);
 
@@ -119,7 +119,7 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
 
         #region Paged queries
 
-        public async Task<IEnumerable<TQueryDTO>> GetPagedAsync(int pageNumber, int pageSize, CancellationToken cancellationToken = default, string fields = null, string orderBy = null)
+        public async Task<IEnumerable<TQueryDTO>> GetPagedAsync(int pageNumber, int pageSize, CancellationToken cancellationToken = default, string? fields = null, string orderBy = null)
         {
             _iCount = _repository.GetCount();
 
@@ -140,7 +140,7 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
 
             return Mapper.Map<IEnumerable<TQueryDTO>>(list);
         }
-        public async Task<IEnumerable<TQueryDTO>> GetPagedAsync(int pageNumber, int pageSize, Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default, string fields = null, string orderBy = null)
+        public async Task<IEnumerable<TQueryDTO>> GetPagedAsync(int pageNumber, int pageSize, Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default, string? fields = null, string orderBy = null)
         {
             _iCount = _repository.GetCount(predicate);
 

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Portfolio.Application.Contracts.Identity;
+using Portfolio.Application.Models.Identity;
 using Portfolio.WebDashboard.Models;
 using System.Net;
 
@@ -6,10 +8,12 @@ namespace Portfolio.WebDashboard.Controllers
 {
     public class AccountController : BaseController
     {
-        private IConfiguration _config;
+        //private IConfiguration _config;
+        private readonly IAuthService _authService;
 
-        public AccountController(IConfiguration config) : base(config)
+        public AccountController(IAuthService authService, IConfiguration config) : base(config)
         {
+            _authService = authService;
         }
 
         public IActionResult Login()
@@ -20,7 +24,15 @@ namespace Portfolio.WebDashboard.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(AuthorizationViewModel authData)
+        public async Task<IActionResult> Login(AuthRequest authData)
+        {
+            return Ok(await _authService.Login(authData));
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> LoginA(AuthorizationViewModel authData)
         {
             if (ModelState.IsValid)
             {
