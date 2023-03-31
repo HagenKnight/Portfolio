@@ -1,20 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Portfolio.WebDashboard.Models;
+using Portfolio.WebDashboard.Models.Modals;
 using System.Diagnostics;
 
 namespace Portfolio.WebDashboard.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IConfiguration config) : base(config)
         {
             _logger = logger;
         }
 
         public IActionResult Index()
         {
+            if (TempData["ShowModal"] == null)
+                InicializeModalDialog(ShowModal.NO);
+
             return View();
         }
 

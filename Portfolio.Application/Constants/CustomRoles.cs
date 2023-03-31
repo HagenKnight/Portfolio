@@ -1,4 +1,4 @@
-﻿namespace Portfolio.Application.Models
+﻿namespace Portfolio.Application.Constants
 {
     public static class CustomRoles
     {

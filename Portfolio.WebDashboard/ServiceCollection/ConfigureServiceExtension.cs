@@ -4,6 +4,7 @@ using Portfolio.Infrastructure.Persistence.ServiceCollection;
 using Portfolio.Infrastructure.UnitOfWork.ServiceCollection;
 using Portfolio.Infrastructure.Common.ServiceCollection;
 using Portfolio.WebDashboard.Middleware;
+using Portfolio.Infrastructure.Identity;
 
 namespace Portfolio.WebDashboard.ServiceCollection
 {
@@ -14,7 +15,7 @@ namespace Portfolio.WebDashboard.ServiceCollection
             services.AddApplicationLayer();
             services.AddPersistenceLayer(configuration);
             services.AddUnitOfWorkLayer();
-            services.AddCommonLayer();
+            services.AddCommonLayer(configuration);
             services.AddTransient<ErrorHandlerMiddleware>();
             services.AddControllersWithViews().AddNewtonsoftJson(options =>
             {
@@ -28,7 +29,17 @@ namespace Portfolio.WebDashboard.ServiceCollection
                 options.SerializerSettings.FloatParseHandling = Newtonsoft.Json.FloatParseHandling.Decimal;
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
-            
+
+            // call Identity services builder
+            services.ConfigureIdentityServices(configuration);
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsePolicy", builder => builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                );
+            });
         }
     }
 }

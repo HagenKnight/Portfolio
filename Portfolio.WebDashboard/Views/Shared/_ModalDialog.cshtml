@@ -1,0 +1,68 @@
+﻿<!-- ================================================== -->
+<!-- START GENERIC MODAL -->
+<div class="modal fade" id="Modal_Dialog">
+
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">@TempData["Titulo"].ToString()</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+
+                    <div class="row g-3 text-center">
+                        @if (TempData["TypeOfLoginState"] != null)
+                        {
+                            if (TempData["TypeOfLoginState"].ToString() == "LOGIN")
+                            {
+                                @if (TempData["TypeOfDialog"].ToString() == "ERROR")
+                                {
+                                    <i class="fa-5x fa-regular fa-id-card text-danger"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa-5x fa-solid fa-robot text-danger"></i>
+                                }
+                            }
+                            else if (TempData["TypeOfLoginState"].ToString() == "LOGGED")
+                            {
+                                @switch (TempData["TypeOfDialog"].ToString())
+                                {
+                                    case "SUCCESS":
+                                        <i class="fa-5x fa-solid fa-circle-check text-success"></i>
+                                        break;
+                                    case "WARNING":
+                                        <i class="fa-5x fa-solid fa-triangle-exclamation text-warning"></i>
+                                        break;
+                                    case "ERROR":
+                                        <i class="fa-5x fa-solid fa-circle-xmark text-danger"></i>
+                                        break;
+                                    case "INFORMATION":
+                                        <i class="fa-5x fa-solid fa-circle-info text-info"></i>
+                                        break;
+                                    case "CONFIRM":
+                                        <i class="fa-5x fa-solid fa-circle-question text-primary"></i>
+                                        break;
+                                }
+                            }
+                        }
+
+                        <h5 class="text-center">
+                            @Html.Raw(@TempData["Mensaje"])
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                @if (TempData["TypeOfDialog"].ToString() == "CONFIRM")
+                {
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Aceptar</button>
+                }
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- END OF GENERIC MODAL -->

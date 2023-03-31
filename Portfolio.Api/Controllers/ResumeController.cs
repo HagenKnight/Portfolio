@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Portfolio.Application.Constants;
 using Portfolio.Application.Features.Resume;
 using Portfolio.Application.Features.Resume.Queries;
-using Portfolio.Application.Models;
 using Portfolio.Core.DTO.Resume;
 using Portfolio.Core.DTO.Resume;
 using Portfolio.Core.DTO.Resume;

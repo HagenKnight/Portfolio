@@ -29,11 +29,29 @@ namespace Portfolio.Infrastructure.Identity.Services
         {
             var user = await _userManager.FindByEmailAsync(request.Email);
             if (user == null)
-                throw new AuthorizationException("403", $"El Usuario com email {request.Email} no existe.");
+                throw new AuthorizationException("403", $"El usuario con email {request.Email} no existe.");
 
             var resultado = await _signInManager.PasswordSignInAsync(user.UserName, request.Password, false, lockoutOnFailure: false);
             if (!resultado.Succeeded)
                 throw new AuthorizationException("401", $"Las credenciales no son correctas");
+
+            var token = await GenerateToken(user);
+            var authResponse = new AuthResponse
+            {
+                Id = user.Id,
+                Token = new JwtSecurityTokenHandler().WriteToken(token),
+                Email = user.Email,
+                Username = user.UserName
+            };
+            return authResponse;
+        }
+
+
+        public async Task<AuthResponse> Recovery(AuthRequest request)
+        {
+            var user = await _userManager.FindByEmailAsync(request.Email);
+            if (user == null)
+                throw new AuthorizationException("403", $"El usuario con email {request.Email} no existe.");
 
             var token = await GenerateToken(user);
             var authResponse = new AuthResponse
@@ -59,8 +77,8 @@ namespace Portfolio.Infrastructure.Identity.Services
             var user = new ApplicationUser
             {
                 Email = request.Email,
-                FirstName = request.Nombre,
-                Lastname = request.Apellidos,
+                FirstName = request.FirstName,
+                Lastname = request.LastName,
                 UserName = request.Username,
                 EmailConfirmed = true
             };

@@ -16,7 +16,7 @@ namespace Portfolio.Api.ServiceCollection
             services.AddApplicationLayer();
             services.AddPersistenceLayer(configuration);
             services.AddUnitOfWorkLayer();
-            services.AddCommonLayer();
+            services.AddCommonLayer(configuration);
             services.AddTransient<ErrorHandlerMiddleware>();
             services.AddControllers().AddNewtonsoftJson(options =>
             {

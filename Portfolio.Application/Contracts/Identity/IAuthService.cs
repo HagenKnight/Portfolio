@@ -5,6 +5,9 @@ namespace Portfolio.Application.Contracts.Identity
     public interface IAuthService
     {
         Task<AuthResponse> Login(AuthRequest request);
+
+        Task<AuthResponse> Recovery(AuthRequest request);
+
         Task<RegistrationResponse> Register(RegistrationRequest request);
     }
 }

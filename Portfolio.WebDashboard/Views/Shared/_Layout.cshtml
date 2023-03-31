@@ -7,6 +7,7 @@
 
     <!-- Fonts [ OPTIONAL ] -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
 
@@ -32,7 +33,7 @@
         <section id="content" class="content">
 
             @RenderBody()
-           
+
             <!-- FOOTER -->
             <footer class="content__boxed mt-auto">
                 <div class="content__wrap py-3 py-md-1 d-flex flex-column flex-md-row align-items-md-center">
@@ -48,7 +49,6 @@
 
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <!-- END - CONTENTS -->
-
         <!-- HEADER -->
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <header class="header">
@@ -208,40 +208,24 @@
                                 <!-- User dropdown header -->
                                 <div class="d-flex align-items-center border-bottom px-3 py-2">
                                     <div class="flex-shrink-0">
-                                        <img class="img-sm rounded-circle" src="./assets/img/profile-photos/1.png" alt="Profile Picture" loading="lazy">
+                                        <img class="img-sm rounded-circle" src="/img/3.png" alt="Profile Picture" loading="lazy">
                                     </div>
                                     <div class="flex-grow-1 ms-3">
-                                        <h5 class="mb-0">Aaron Chavez</h5>
-                                        <span class="text-muted fst-italic">aaron_chavez@example.com</span>
+                                        <h5 class="mb-0">Usuario: @ViewBag.FullName</h5>
+                                        <span class="text-muted fst-italic">Email: @ViewBag.Email</span>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-7">
+                                    <div class="col-md-2">
 
                                         <!-- Simple widget and reports -->
                                         <div class="list-group list-group-borderless mb-3">
-                                            <div class="list-group-item text-center border-bottom mb-3">
-                                                <p class="h1 display-1 text-green">17</p>
-                                                <p class="h6 mb-0"><i class="demo-pli-basket-coins fs-3 me-2"></i> New orders</p>
-                                                <small class="text-muted">You have new orders</small>
-                                            </div>
-                                            <div class="list-group-item py-0 d-flex justify-content-between align-items-center">
-                                                Today Earning
-                                                <small class="fw-bolder">$578</small>
-                                            </div>
-                                            <div class="list-group-item py-0 d-flex justify-content-between align-items-center">
-                                                Tax
-                                                <small class="fw-bolder text-danger">- $28</small>
-                                            </div>
-                                            <div class="list-group-item py-0 d-flex justify-content-between align-items-center">
-                                                Total Earning
-                                                <span class="fw-bold text-primary">$6,578</span>
-                                            </div>
+                                            
                                         </div>
 
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-md-10">
 
                                         <!-- User menu link -->
                                         <div class="list-group list-group-borderless h-100 py-3">
@@ -256,10 +240,7 @@
                                                 <i class="demo-pli-gear fs-5 me-2"></i> Settings
                                             </a>
 
-                                            <a href="#" class="list-group-item list-group-item-action mt-auto">
-                                                <i class="demo-pli-computer-secure fs-5 me-2"></i> Lock screen
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
+                                            <a href="@Url.Action("Logout", "Account")" class="list-group-item list-group-item-action">
                                                 <i class="demo-pli-unlock fs-5 me-2"></i> Logout
                                             </a>
                                         </div>
@@ -302,17 +283,17 @@
                                 <!-- User name and position -->
                                 <button class="d-block btn shadow-none p-2" data-bs-toggle="collapse" data-bs-target="#usernav" aria-expanded="false" aria-controls="usernav">
                                     <span class="dropdown-toggle d-flex justify-content-center align-items-center">
-                                        <h6 class="mb-0 me-3">{FirstName} {LastName}</h6>
+                                        <h6 class="mb-0 me-3">@ViewBag.FullName</h6>
                                     </span>
-                                    <small class="text-muted">{Role}</small>
+                                    <small class="text-muted">@ViewBag.Rol</small>
                                 </button>
 
                                 <!-- Collapsed user menu -->
                                 <div id="usernav" class="nav flex-column collapse">
-                                    <a href="#" class="nav-link d-flex justify-content-between align-items-center">
+                                    @*<a href="#" class="nav-link d-flex justify-content-between align-items-center">
                                         <span><i class="demo-pli-mail fs-5 me-2"></i><span class="ms-1">Messages</span></span>
                                         <span class="badge bg-danger rounded-pill">14</span>
-                                    </a>
+                                    </a>*@
                                     <a href="#" class="nav-link">
                                         <i class="demo-pli-male fs-5 me-2"></i>
                                         <span class="ms-1">Profile</span>
@@ -321,11 +302,7 @@
                                         <i class="demo-pli-gear fs-5 me-2"></i>
                                         <span class="ms-1">Settings</span>
                                     </a>
-                                    <a href="#" class="nav-link">
-                                        <i class="demo-pli-computer-secure fs-5 me-2"></i>
-                                        <span class="ms-1">Lock screen</span>
-                                    </a>
-                                    <a href="#" class="nav-link">
+                                    <a href="@Url.Action("Logout", "Account")" class="nav-link">
                                         <i class="demo-pli-unlock fs-5 me-2"></i>
                                         <span class="ms-1">Logout</span>
                                     </a>
@@ -354,13 +331,7 @@
                             </a>
                             <ul class="mininav-content nav flex-column collapse">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">This device only</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">All Devices</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Lock screen</a>
+                                    <a href="@Url.Action("Logout", "Account")" class="nav-link">This session</a>
                                 </li>
                             </ul>
                         </li>
@@ -376,7 +347,6 @@
     </div>
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <!-- END - PAGE CONTAINER -->
-
     <!-- SCROLL TO TOP BUTTON -->
     <div class="scroll-container">
         <a href="#root" class="scroll-page rounded-circle ratio ratio-1x1" aria-label="Scroll button"></a>
@@ -384,16 +354,39 @@
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <!-- END - SCROLL TO TOP BUTTON -->
 
+    <partial name="_ModalDialog" />
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/vendors/popperjs/popper.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/nifty/nifty.min.js"></script>
-    
+
     <script src="~/js/demo/demo-purpose-only.min.js"></script>
 
     <script src="~/js/demo/dashboard-1.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
+
+    @if (TempData["ShowModal"].ToString() == "YES")
+    {
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function (event) {
+                var myModal = new bootstrap.Modal(document.getElementById('Modal_Dialog'))
+                myModal.show()
+            });
+        </script>
+    }
+
+    <script>
+        var ConfirmDelete = function (DeviceId) {
+            //$("#hiddenIotDeviceId").val(DeviceId);
+            
+
+            $("#Modal_Dialog").modal('show');
+        }
+    </script>
+
 </body>
 </html>

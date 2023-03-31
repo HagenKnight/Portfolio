@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Portfolio.Application.Constants;
 using Portfolio.Application.Features.WorkerProfile;
-using Portfolio.Application.Models;
 using Portfolio.Core.DTO.WorkerProfile;
 using Portfolio.Core.Wrappers;
 

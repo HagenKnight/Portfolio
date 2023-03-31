@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Portfolio.Application.Contracts.Identity;
 using Portfolio.Application.Models.Identity;
+using Portfolio.Infrastructure.Identity.Authorization;
 using Portfolio.WebDashboard.Models;
+using Portfolio.WebDashboard.Models.Modals;
 using System.Net;
 
 namespace Portfolio.WebDashboard.Controllers
@@ -18,6 +20,7 @@ namespace Portfolio.WebDashboard.Controllers
 
         public IActionResult Login()
         {
+            InicializeModalDialog(ShowModal.NO);
             return View();
         }
 
@@ -26,7 +29,41 @@ namespace Portfolio.WebDashboard.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(AuthRequest authData)
         {
-            return Ok(await _authService.Login(authData));
+            try
+            {
+                var response = await _authService.Login(authData);
+                if (response != null)
+                {
+                    // Set Dialog Modal
+                    TempData["TypeOfLoginState"] = TypeOfLoginState.LOGGED;
+
+                    // Set values for session dashboard
+                    ViewBag.Email = response.Email;
+
+                    return RedirectToAction("Index", "Home");
+                }
+                else 
+                    return View();
+            }
+            catch (AuthorizationException ex)
+            {
+                switch (ex.Code)
+                {
+                    case "401":
+                        ShowDialog(TypeOfLoginState.LOGIN, TypeOfModalDialog.ERROR, "Unauthorized",
+                               ex.Message);
+
+                        return View();
+                    case "403":
+                        ShowDialog(TypeOfLoginState.LOGIN, TypeOfModalDialog.INFORMATION, "Forbidden",
+                               ex.Message);
+                        return View();
+                    default:
+                        ShowDialog(TypeOfLoginState.LOGIN, TypeOfModalDialog.ERROR, "Authentication Error",
+                               ex.Message);
+                        return View();
+                }
+            }
         }
 
 
@@ -65,6 +102,13 @@ namespace Portfolio.WebDashboard.Controllers
                 return View();
         }
 
+
+        public ActionResult Logout()
+        {
+            // Borra la cookie utilizada para establecer Sesión
+
+            return RedirectToAction("Login", "Account");
+        }
 
         public IActionResult Recovery()
         {

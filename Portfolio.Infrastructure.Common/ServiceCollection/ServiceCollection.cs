@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Portfolio.Core.Entities;
 using Portfolio.Core.Interfaces.Management;
 using Portfolio.Core.Interfaces.Repository;
 using Portfolio.Core.Interfaces.Services;
+using Portfolio.Core.Models;
 using Portfolio.Infrastructure.Common.Helpers;
 using Portfolio.Infrastructure.Common.Repositories;
 using Portfolio.Infrastructure.Common.Services;
@@ -13,7 +14,7 @@ namespace Portfolio.Infrastructure.Common.ServiceCollection
 {
     public static class ServiceCollection
     {
-        public static void AddCommonLayer(this IServiceCollection services)
+        public static void AddCommonLayer(this IServiceCollection services, IConfiguration configuration)
         {
             /* Repositories */
             services.AddTransient<ICountryRepository<PortfolioDbContext>, CountryRepository>();
@@ -26,6 +27,9 @@ namespace Portfolio.Infrastructure.Common.ServiceCollection
             services.AddTransient<IWorkerProfileService, WorkerProfileService>();
             services.AddTransient<IResumeTypeService, ResumeTypeService>();
             services.AddTransient<IResumeService, ResumeService>();
+
+            services.Configure<EmailSettings>( configuration.GetSection("EmailSettings"));
+            services.AddTransient<IEmailService, EmailService>();
 
             /* Helpers */
             services.AddSingleton<IUriService>(o =>

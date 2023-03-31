@@ -4,7 +4,7 @@
     {
         public static void InitConfigurationWebApp(this IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //// Configure the HTTP request pipeline.
+            // Configure the HTTP request pipeline.
             if (!env.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error404");
@@ -22,10 +22,8 @@
             app.UseCors("CorsePolicy");
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapControllerRoute("login", "{controller=Account}/{action=Login}");
+                endpoints.MapControllerRoute("default", "{controller=Account}/{action=Login}");
             });
-
         }
     }
 }
