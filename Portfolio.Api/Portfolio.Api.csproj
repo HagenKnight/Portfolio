@@ -4,7 +4,16 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<PreserveCompilationContext>true</PreserveCompilationContext>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Content Remove="EmailTemplates\PasswordResetTemplate.cshtml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="EmailTemplates\PasswordResetTemplate.cshtml" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
