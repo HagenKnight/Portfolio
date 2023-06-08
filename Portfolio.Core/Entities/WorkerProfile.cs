@@ -21,5 +21,9 @@ namespace Portfolio.Core.Entities
         public ICollection<Resume>? Resume { get; set; }
         public ICollection<Service>? Service { get; set; }
         public ICollection<Certificate>? Certificate { get; set; }
+        public ICollection<Project>? Project { get; set; }
+        public ICollection<Language>? Language { get; set; }
+        public ICollection<Interest>? Interest { get; set; }
+
     }
 }

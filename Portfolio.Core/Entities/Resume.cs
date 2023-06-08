@@ -19,5 +19,7 @@ namespace Portfolio.Core.Entities
         public int ResumeTypeId { get; set; }
         // Navigation property
         public virtual ResumeType? ResumeType { get; set; }
+
+        public ICollection<AptitudeOnResume>? AptitudeOnResume { get; set; }
     }
 }

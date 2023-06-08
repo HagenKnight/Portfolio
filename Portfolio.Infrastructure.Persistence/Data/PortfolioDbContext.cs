@@ -17,9 +17,15 @@ namespace Portfolio.Infrastructure.Persistence.Data
         public DbSet<Country> Countries { get; set; }
         public DbSet<WorkerProfile> WorkerProfiles { get; set; }
         public DbSet<ResumeType> ResumeTypes { get; set; }
+        public DbSet<Aptitude> Aptitudes { get; set; }
         public DbSet<Resume> Resumes { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<Certificate> Certificates { get; set; }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<Language> Languages { get; set; }
+        public DbSet<Interest> Interests { get; set; }
+        public DbSet<AptitudeOnResume> AptitudesOnResume{ get; set; }
+        public DbSet<AptitudeOnProject> AptitudesOnProject{ get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
