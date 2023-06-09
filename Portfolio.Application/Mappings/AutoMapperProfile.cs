@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Portfolio.Application.Features.Aptitude.Queries;
 using Portfolio.Application.Features.Country;
 using Portfolio.Core.Custom;
 using Portfolio.Core.DTO;
@@ -20,7 +21,7 @@ namespace Portfolio.Application.Mappings
             /* Mapping queries and parameters. */
             CreateMap<Country, CountryDTO>().ReverseMap();
             CreateMap<GetAllCountryQuery, GetAllCountryParameter>().ReverseMap();
-            
+
             CreateMap<WorkerProfile, WorkerProfileDTO>().ReverseMap();
             CreateMap<WorkerProfile, CreateWorkerProfileDTO>().ReverseMap();
             CreateMap<WorkerProfileDTO, CreateWorkerProfileDTO>().ReverseMap();
@@ -44,6 +45,14 @@ namespace Portfolio.Application.Mappings
             CreateMap<ResumeTypeDTO, UpdateResumeTypeDTO>().ReverseMap();
             CreateMap<ResumeType, DeleteResumeTypeDTO>().ReverseMap();
             CreateMap<ResumeTypeDTO, DeleteResumeTypeDTO>().ReverseMap();
+
+            CreateMap<Aptitude, AptitudeDTO>().ReverseMap();
+            CreateMap<Aptitude, CreateAptitudeDTO>().ReverseMap();
+            CreateMap<AptitudeDTO, CreateAptitudeDTO>().ReverseMap();
+            CreateMap<UpdateAptitudeDTO, Aptitude>().ReverseMap();
+            CreateMap<UpdateAptitudeDTO, AptitudeDTO>().ReverseMap();
+            CreateMap<DeleteAptitudeDTO, Aptitude>().ReverseMap();
+            CreateMap<DeleteAptitudeDTO, AptitudeDTO>().ReverseMap();
 
         }
     }

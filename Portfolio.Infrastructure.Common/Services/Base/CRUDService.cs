@@ -1,4 +1,4 @@
-﻿using Ardalis.GuardClauses;
+using Ardalis.GuardClauses;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Portfolio.Core.Exceptions;

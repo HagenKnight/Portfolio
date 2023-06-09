@@ -21,12 +21,14 @@ namespace Portfolio.Infrastructure.Common.ServiceCollection
             services.AddTransient<IWorkerProfileRepository<PortfolioDbContext>, WorkerProfileRepository>();
             services.AddTransient<IResumeTypeRepository<PortfolioDbContext>, ResumeTypeRepository>();
             services.AddTransient<IResumeRepository<PortfolioDbContext>, ResumeRepository>();
+            services.AddTransient<IAptitudeRepository<PortfolioDbContext>, AptitudeRepository>();
 
             /* Services */
             services.AddTransient<ICountryService, CountryService>();
             services.AddTransient<IWorkerProfileService, WorkerProfileService>();
             services.AddTransient<IResumeTypeService, ResumeTypeService>();
             services.AddTransient<IResumeService, ResumeService>();
+            services.AddTransient<IAptitudeService, AptitudeService>();
 
             services.Configure<EmailSettings>( configuration.GetSection("EmailSettings"));
             services.AddTransient<IEmailService, EmailService>();
