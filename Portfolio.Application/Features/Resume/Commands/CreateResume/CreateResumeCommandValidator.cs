@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Portfolio.Core.DTO.Resume;
+using Portfolio.Core.DTO;
 
 namespace Portfolio.Application.Features.Resume.Commands.CreateResume
 {

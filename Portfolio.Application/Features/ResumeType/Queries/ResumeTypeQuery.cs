@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Portfolio.Core.DTO.ResumeType;
+using Portfolio.Core.DTO;
 using Portfolio.Core.Parameters;
 
 namespace Portfolio.Application.Features.ResumeType.Queries

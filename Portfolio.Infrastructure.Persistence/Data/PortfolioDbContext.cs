@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Portfolio.Core.Entities;
+using Portfolio.Core.Entities.Base;
 using Portfolio.Infrastructure.Persistence.Data.Configurations;
 
 namespace Portfolio.Infrastructure.Persistence.Data
@@ -13,7 +14,8 @@ namespace Portfolio.Infrastructure.Persistence.Data
 
         }
 
-        // Dbset for Entities */
+        #region Dbset for Entities
+
         public DbSet<Country> Countries { get; set; }
         public DbSet<WorkerProfile> WorkerProfiles { get; set; }
         public DbSet<ResumeType> ResumeTypes { get; set; }
@@ -27,6 +29,7 @@ namespace Portfolio.Infrastructure.Persistence.Data
         public DbSet<AptitudeOnResume> AptitudesOnResume{ get; set; }
         public DbSet<AptitudeOnProject> AptitudesOnProject{ get; set; }
 
+        #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -51,6 +54,27 @@ namespace Portfolio.Infrastructure.Persistence.Data
                     Name = e.ToString()
                 })
                 );
+        }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            foreach (var entry in ChangeTracker.Entries<EntityBase<int>>())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        entry.Entity.CreatedDate = DateTime.UtcNow;
+                        entry.Entity.CreatedBy = "system";
+                        entry.Entity.IsDeleted = false;
+                        break;
+
+                    case EntityState.Modified:
+                        entry.Entity.LastModifiedDate = DateTime.UtcNow;
+                        entry.Entity.LastModifiedBy = "system";
+                        break;
+                }
+            }
+            return base.SaveChangesAsync(cancellationToken);
         }
 
     }

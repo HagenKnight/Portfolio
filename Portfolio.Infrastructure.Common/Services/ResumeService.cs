@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
+using Portfolio.Core.DTO;
 using Portfolio.Core.DTO.Base;
 using Portfolio.Core.DTO.Resume;
-using Portfolio.Core.DTO.WorkerProfile;
 using Portfolio.Core.Entities;
 using Portfolio.Core.Exceptions;
 using Portfolio.Core.Interfaces.Base;

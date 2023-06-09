@@ -1,10 +1,6 @@
-﻿using MediatR;
-using Portfolio.Core.DTO.Base;
-using Portfolio.Core.DTO.ResumeType;
-using Portfolio.Core.DTO.WorkerProfile;
-using Portfolio.Core.Wrappers;
+﻿using Portfolio.Core.DTO.WorkerProfile;
 
-namespace Portfolio.Core.DTO.Resume
+namespace Portfolio.Core.DTO
 {
     public class ResumeDTO
     {

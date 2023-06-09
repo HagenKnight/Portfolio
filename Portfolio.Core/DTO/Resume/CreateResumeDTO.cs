@@ -3,7 +3,7 @@ using Portfolio.Core.DTO.Base;
 using Portfolio.Core.DTO.WorkerProfile;
 using Portfolio.Core.Wrappers;
 
-namespace Portfolio.Core.DTO.Resume
+namespace Portfolio.Core.DTO
 {
     public class CreateResumeDTO : CommandDTO, IRequest<ApiResponse<CreateResumeDTO>>
     {

@@ -1,4 +1,4 @@
-﻿namespace Portfolio.Core.DTO.ResumeType
+﻿namespace Portfolio.Core.DTO
 {
     public class ResumeTypeDTO
     {

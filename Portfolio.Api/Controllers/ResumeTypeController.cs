@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Portfolio.Application.Features.ResumeType.Queries;
-using Portfolio.Core.DTO.ResumeType;
+using Portfolio.Core.DTO;
 
 namespace Portfolio.Api.Controllers
 {

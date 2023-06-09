@@ -1,4 +1,5 @@
-﻿using Portfolio.Core.DTO.Resume;
+﻿using Portfolio.Core.DTO;
+using Portfolio.Core.DTO.Resume;
 
 namespace Portfolio.Core.Interfaces.Services
 {

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using Portfolio.Core.DTO;
 using Portfolio.Core.DTO.Base;
-using Portfolio.Core.DTO.ResumeType;
 using Portfolio.Core.Entities;
 using Portfolio.Core.Interfaces.Base;
 using Portfolio.Core.Interfaces.Repository;

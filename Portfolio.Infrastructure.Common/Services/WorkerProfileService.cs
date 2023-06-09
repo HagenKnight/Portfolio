@@ -30,12 +30,13 @@ namespace Portfolio.Infrastructure.Common.Services
             await FindAsync(id, cancellationToken);
 
         public async Task<WorkerProfileDTO> FindWorkerProfile(string email, CancellationToken cancellationToken = default) =>
-            await GetSingleAsync( u => u.Email == email &&
+            await GetSingleAsync(u => u.Email == email &&
                                  u.IsDeleted == false, "Country", cancellationToken);
 
 
         public async Task<IEnumerable<WorkerProfileDTO>> GetWorkerProfiles(CancellationToken cancellationToken = default) =>
             await GetAllIncludeAsync("Country", cancellationToken);
+
 
         public async Task<CreateWorkerProfileDTO> AddWorkerProfile(CreateWorkerProfileDTO objDTO, CancellationToken cancellationToken = default)
         {

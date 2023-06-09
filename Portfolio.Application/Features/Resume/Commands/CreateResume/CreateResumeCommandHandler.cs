@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Portfolio.Core.DTO.Resume;
+using Portfolio.Core.DTO;
 using Portfolio.Core.Entities;
 using Portfolio.Core.Exceptions;
 using Portfolio.Core.Interfaces.Services;
