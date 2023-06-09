@@ -52,7 +52,15 @@ namespace Portfolio.Application.Mappings
             CreateMap<UpdateAptitudeDTO, Aptitude>().ReverseMap();
             CreateMap<UpdateAptitudeDTO, AptitudeDTO>().ReverseMap();
             CreateMap<DeleteAptitudeDTO, Aptitude>().ReverseMap();
-            CreateMap<DeleteAptitudeDTO, AptitudeDTO>().ReverseMap();
+            CreateMap<DeleteAptitudeDTO, AptitudeDTO>().ReverseMap(); 
+            
+            CreateMap<Language, LanguageDTO>().ReverseMap();
+            CreateMap<Language, CreateLanguageDTO>().ReverseMap();
+            CreateMap<LanguageDTO, CreateLanguageDTO>().ReverseMap();
+            CreateMap<UpdateLanguageDTO, Language>().ReverseMap();
+            CreateMap<UpdateLanguageDTO, LanguageDTO>().ReverseMap();
+            CreateMap<DeleteLanguageDTO, Language>().ReverseMap();
+            CreateMap<DeleteLanguageDTO, LanguageDTO>().ReverseMap();
 
         }
     }

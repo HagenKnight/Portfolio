@@ -2,52 +2,48 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Portfolio.Application.Constants;
-using Portfolio.Application.Features.Aptitude.Queries;
+using Portfolio.Application.Features.Language.Queries;
 using Portfolio.Core.DTO;
 using Portfolio.Core.Wrappers;
 
 namespace Portfolio.Api.Controllers
 {
-
     [Route("api/[controller]")]
     [ApiController]
-    public class AptitudeController : Controller
+    public class LanguageController : Controller
     {
-
         private readonly IMediator _mediator;
 
-        public AptitudeController(IMediator mediator)
+        public LanguageController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<AptitudeDTO>> GetAptitudes() =>
-            await _mediator.Send(new GetAllAptitudeQuery());
+        public async Task<IEnumerable<LanguageDTO>> GetLanguages() =>
+            await _mediator.Send(new GetAllLanguageQuery());
 
-        // GET: api/Aptitude/5
+        // GET: api/Language/5
         [HttpGet("{id}")]
-        public async Task<AptitudeDTO> GetAptitude(int id) =>
-            await _mediator.Send(new GetAptitudeQuery(id));
-
+        public async Task<LanguageDTO> GetLanguage(int id) =>
+            await _mediator.Send(new GetLanguageQuery(id));
 
         // POST: api/Aptitude
         [HttpPost]
         [Authorize(Roles = CustomRoles.Administrator)]
-        public async Task<ApiResponse<CreateAptitudeDTO>> Post([FromBody] CreateAptitudeDTO command) =>
+        public async Task<ApiResponse<CreateLanguageDTO>> Post([FromBody] CreateLanguageDTO command) =>
             await _mediator.Send(command);
 
 
         [HttpPut()]
         [Authorize(Roles = CustomRoles.Administrator)]
-        public async Task<ApiResponse<UpdateAptitudeDTO>> Put([FromBody] UpdateAptitudeDTO command) =>
+        public async Task<ApiResponse<UpdateLanguageDTO>> Put([FromBody] UpdateLanguageDTO command) =>
             await _mediator.Send(command);
 
-        // DELETE: api/Aptitude
+        // DELETE: api/Language
         [HttpDelete()]
         [Authorize(Roles = CustomRoles.Administrator)]
-        public async Task<ApiResponse<DeleteAptitudeDTO>> Delete([FromBody] DeleteAptitudeDTO command) =>
+        public async Task<ApiResponse<DeleteLanguageDTO>> Delete([FromBody] DeleteLanguageDTO command) =>
             await _mediator.Send(command);
-
     }
 }
