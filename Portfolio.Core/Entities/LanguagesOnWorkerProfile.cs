@@ -1,17 +1,14 @@
 ﻿using Portfolio.Core.Entities.Base;
-using System.ComponentModel.DataAnnotations;
 
 namespace Portfolio.Core.Entities
 {
-    public class Service : EntityBase<int>
+    public class LanguagesOnWorkerProfile : EntityBase<int>
     {
-        [StringLength(80)]
-        public string Name { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
+        public int LanguageId { get; set; }
         public int WorkerProfileId { get; set; }
 
         // Navigation property
+        public virtual Language? Language { get; set; }
         public virtual WorkerProfile? WorkerProfile { get; set; }
-
     }
 }

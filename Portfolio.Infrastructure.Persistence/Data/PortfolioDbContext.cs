@@ -34,6 +34,7 @@ namespace Portfolio.Infrastructure.Persistence.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CountryConfiguration());
+            modelBuilder.ApplyConfiguration(new LanguageConfiguration());
 
             // Singularize table name
             foreach (IMutableEntityType entity in modelBuilder.Model.GetEntityTypes())

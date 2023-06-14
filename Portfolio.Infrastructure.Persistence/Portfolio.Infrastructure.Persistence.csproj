@@ -38,4 +38,8 @@
 		<ProjectReference Include="..\Portfolio.Core\Portfolio.Core.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Data\Migrations\" />
+	</ItemGroup>
+
 </Project>

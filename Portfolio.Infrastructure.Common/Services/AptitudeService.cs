@@ -39,32 +39,30 @@ namespace Portfolio.Infrastructure.Common.Services
             else
                 return Mapper.Map<CreateAptitudeDTO>(await InsertAsync(objDTO, cancellationToken));
         }
+
         public async Task<UpdateAptitudeDTO> UpdateAptitude(UpdateAptitudeDTO objDTO, CancellationToken cancellationToken = default)
         {
-            var ifExists = await GetSingleAsync(u => u.Id == objDTO.Id && u.IsDeleted == false);
-            if (ifExists == null)
+            var ifExistsById = await GetSingleAsync(u => u.Id == objDTO.Id &&
+                                    u.IsDeleted == false);
+            if (ifExistsById == null)
                 throw new EntityNotFoundException(objDTO.GetType(), objDTO.Id);
             else
             {
-                ifExists = await GetSingleAsync(u => u.Name == objDTO.Name && u.IsDeleted == false);
-                if (ifExists != null)
+                var ifExistsByName = await GetSingleAsync(u => u.Name == objDTO.Name &&
+                    u.IsDeleted == false,
+                    null, cancellationToken);
+                if (ifExistsByName != null)
                 {
-                    if (ifExists.Id == objDTO.Id)
-                    {
+                    if (ifExistsByName.Id == objDTO.Id)
                         return Mapper.Map<UpdateAptitudeDTO>(await UpdateAsync(objDTO, cancellationToken));
-                    }
                     else
                         throw new EntityDuplicatedException($"The aptitude with '{objDTO.Name}' name  has already taken.");
                 }
                 else
-                {
-                    ifExists = await GetSingleAsync(u => u.Name == objDTO.Name &&
-                                                    u.Id == objDTO.Id &&
-                                                    u.IsDeleted == false);
                     return Mapper.Map<UpdateAptitudeDTO>(await UpdateAsync(objDTO, cancellationToken));
-                }
             }
         }
+
         public async Task<DeleteAptitudeDTO> DeleteAptitude(DeleteAptitudeDTO objDTO, bool autoSave = true, CancellationToken cancellationToken = default)
         {
             var ifExists = await FilterAsync(u => u.Id == objDTO.Id && u.IsDeleted == false);

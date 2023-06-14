@@ -1,12 +1,5 @@
 ﻿using FluentValidation;
 using Portfolio.Core.DTO;
-using Portfolio.Core.Entities;
-using Portfolio.Core.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Portfolio.Application.Features.Aptitude.Commands.CreateAptitude
 {

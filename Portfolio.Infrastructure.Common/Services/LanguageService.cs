@@ -32,38 +32,33 @@ namespace Portfolio.Infrastructure.Common.Services
 
         public async Task<CreateLanguageDTO> AddLanguage(CreateLanguageDTO objDTO, CancellationToken cancellationToken = default)
         {
-            var ifExists = await FilterAsync(u => u.Name == objDTO.Name &&
-                                  u => u.WorkerProfileId == objDTO.WorkerProfileId &&
+            var ifExists = await FilterAsync(u => u.NameEn == objDTO.NameEn &&
                                   u.IsDeleted == false);
             if (ifExists.Count() > 0)
-                throw new EntityAlreadyExistException(objDTO.GetType(), $"{objDTO.Name}");
+                throw new EntityAlreadyExistException(objDTO.GetType(), $"{objDTO.NameEn}");
             else
                 return Mapper.Map<CreateLanguageDTO>(await InsertAsync(objDTO, cancellationToken));
         }
         public async Task<UpdateLanguageDTO> UpdateLanguage(UpdateLanguageDTO objDTO, CancellationToken cancellationToken = default)
         {
-            var ifExists = await GetSingleAsync(u => u.Id == objDTO.Id && u.IsDeleted == false);
-            if (ifExists == null)
+            var ifExistsById = await GetSingleAsync(u => u.Id == objDTO.Id &&
+                                    u.IsDeleted == false);
+            if (ifExistsById == null)
                 throw new EntityNotFoundException(objDTO.GetType(), objDTO.Id);
             else
             {
-                ifExists = await GetSingleAsync(u => u.Name == objDTO.Name && u.IsDeleted == false);
-                if (ifExists != null)
+                var ifExistsByName = await GetSingleAsync(u => u.NameEn == objDTO.NameEn &&
+                    u.IsDeleted == false,
+                    null, cancellationToken);
+                if (ifExistsByName != null)
                 {
-                    if (ifExists.Id == objDTO.Id)
-                    {
+                    if (ifExistsByName.Id == objDTO.Id)
                         return Mapper.Map<UpdateLanguageDTO>(await UpdateAsync(objDTO, cancellationToken));
-                    }
                     else
-                        throw new EntityDuplicatedException($"The aptitude with '{objDTO.Name}' name  has already taken.");
+                        throw new EntityDuplicatedException($"The Language with '{objDTO.NameEn}' name  has already taken.");
                 }
                 else
-                {
-                    ifExists = await GetSingleAsync(u => u.Name == objDTO.Name &&
-                                                    u.Id == objDTO.Id &&
-                                                    u.IsDeleted == false);
                     return Mapper.Map<UpdateLanguageDTO>(await UpdateAsync(objDTO, cancellationToken));
-                }
             }
         }
         public async Task<DeleteLanguageDTO> DeleteLanguage(DeleteLanguageDTO objDTO, bool autoSave = true, CancellationToken cancellationToken = default)

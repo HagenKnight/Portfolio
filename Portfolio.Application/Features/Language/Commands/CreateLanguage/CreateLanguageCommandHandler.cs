@@ -14,7 +14,7 @@ namespace Portfolio.Application.Features.Language.Commands.CreateLanguage
         public async Task<ApiResponse<CreateLanguageDTO>> Handle(CreateLanguageDTO request, CancellationToken cancellationToken)
         {
             var entity = await _languageService.AddLanguage(request, cancellationToken);
-            return new ApiResponse<CreateLanguageDTO>(entity, $"The Language with name {entity.Name} was created successfully.");
+            return new ApiResponse<CreateLanguageDTO>(entity, $"The Language with name {entity.NameEn} was created successfully.");
         }
     }
 }

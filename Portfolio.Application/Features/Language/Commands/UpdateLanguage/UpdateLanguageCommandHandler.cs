@@ -15,7 +15,7 @@ namespace Portfolio.Application.Features.Language.Commands.UpdateLanguage
         public async Task<ApiResponse<UpdateLanguageDTO>> Handle(UpdateLanguageDTO request, CancellationToken cancellationToken)
         {
             var entity = await _languageService.UpdateLanguage(request, cancellationToken);
-            return new ApiResponse<UpdateLanguageDTO>(entity, $"The Language with name {entity.Name} was updated successfully.");
+            return new ApiResponse<UpdateLanguageDTO>(entity, $"The Language with name {entity.NameEn} was updated successfully.");
         }
     }
 }

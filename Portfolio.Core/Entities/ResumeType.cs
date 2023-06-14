@@ -1,10 +1,12 @@
 ﻿using Portfolio.Core.Entities.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace Portfolio.Core.Entities
 {
 
     public class ResumeType : EntityBase<int>
     {
+        [StringLength(50)]
         public string Name { get; set; } = string.Empty;
         
         // Navigation property

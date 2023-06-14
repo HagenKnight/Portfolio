@@ -57,7 +57,7 @@ namespace Portfolio.Infrastructure.Persistence.Services.Base
             if (getEntity != null)
                 return Mapper.Map<TQueryDTO>(getEntity);
             else
-                throw new EntityNotFoundException(typeof(TEntity));
+                return default;//throw new EntityNotFoundException(typeof(TEntity));
         }
 
         #endregion
