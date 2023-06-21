@@ -23,6 +23,7 @@ namespace Portfolio.Infrastructure.Common.ServiceCollection
             services.AddTransient<IResumeRepository<PortfolioDbContext>, ResumeRepository>();
             services.AddTransient<IAptitudeRepository<PortfolioDbContext>, AptitudeRepository>();
             services.AddTransient<ILanguageRepository<PortfolioDbContext>, LanguageRepository>();
+            services.AddTransient<IInterestRepository<PortfolioDbContext>, InterestRepository>();
 
             /* Services */
             services.AddTransient<ICountryService, CountryService>();
@@ -31,6 +32,7 @@ namespace Portfolio.Infrastructure.Common.ServiceCollection
             services.AddTransient<IResumeService, ResumeService>();
             services.AddTransient<IAptitudeService, AptitudeService>();
             services.AddTransient<ILanguageService, LanguageService>();
+            services.AddTransient<IInterestService, InterestService>();
 
             services.Configure<EmailSettings>( configuration.GetSection("EmailSettings"));
             services.AddTransient<IEmailService, EmailService>();

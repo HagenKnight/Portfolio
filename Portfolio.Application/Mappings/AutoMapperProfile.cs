@@ -62,6 +62,14 @@ namespace Portfolio.Application.Mappings
             CreateMap<DeleteLanguageDTO, Language>().ReverseMap();
             CreateMap<DeleteLanguageDTO, LanguageDTO>().ReverseMap();
 
+            CreateMap<Interest, InterestDTO>().ReverseMap();
+            CreateMap<Interest, CreateInterestDTO>().ReverseMap();
+            CreateMap<InterestDTO, CreateInterestDTO>().ReverseMap();
+            CreateMap<UpdateInterestDTO, Interest>().ReverseMap();
+            CreateMap<UpdateInterestDTO, InterestDTO>().ReverseMap();
+            CreateMap<DeleteInterestDTO, Interest>().ReverseMap();
+            CreateMap<DeleteInterestDTO, InterestDTO>().ReverseMap();
+
         }
     }
 }
