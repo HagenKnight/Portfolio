@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Portfolio.Core.Entities
 {
+    /// <summary>
+    /// Human languages such as English, Spanish, etc.
+    /// </summary>
     public class Language : EntityBase<int>
     {
         [StringLength(50)]

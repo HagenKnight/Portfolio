@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Portfolio.Core.Entities
 {
+    /// <summary>
+    /// Certificates obtained by the employee
+    /// </summary>
     public class Certificate : EntityBase<int>
     {
         [StringLength(200)]

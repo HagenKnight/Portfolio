@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations;
 namespace Portfolio.Core.Entities
 {
 
+    /// <summary>
+    /// Work experience or education record type.
+    /// </summary>
     public class ResumeType : EntityBase<int>
     {
         [StringLength(50)]

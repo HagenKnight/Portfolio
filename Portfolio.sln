@@ -36,6 +36,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{72F247CE-8842-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.WebDashboard", "Portfolio.WebDashboard\Portfolio.WebDashboard.csproj", "{9175FEE4-9F25-4ABE-AE91-95B1D150644C}"
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Portfolio.ReactUI", "Portfolio.ReactUI\Portfolio.ReactUI.esproj", "{DF2C60E9-F8D0-4FC3-BBFB-5535FCC94258}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +76,12 @@ Global
 		{9175FEE4-9F25-4ABE-AE91-95B1D150644C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9175FEE4-9F25-4ABE-AE91-95B1D150644C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9175FEE4-9F25-4ABE-AE91-95B1D150644C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF2C60E9-F8D0-4FC3-BBFB-5535FCC94258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF2C60E9-F8D0-4FC3-BBFB-5535FCC94258}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF2C60E9-F8D0-4FC3-BBFB-5535FCC94258}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DF2C60E9-F8D0-4FC3-BBFB-5535FCC94258}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF2C60E9-F8D0-4FC3-BBFB-5535FCC94258}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF2C60E9-F8D0-4FC3-BBFB-5535FCC94258}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -91,6 +99,7 @@ Global
 		{E706204F-EA59-4F3A-A37B-ED64B3F5AC11} = {AA5C2480-D7FE-4530-A3E0-C9433D6BDE5F}
 		{72F247CE-8842-4669-9F9A-733BDA808E31} = {AA5C2480-D7FE-4530-A3E0-C9433D6BDE5F}
 		{9175FEE4-9F25-4ABE-AE91-95B1D150644C} = {516ED6D7-6AC9-4D58-8448-7E1B4DC4B6CB}
+		{DF2C60E9-F8D0-4FC3-BBFB-5535FCC94258} = {516ED6D7-6AC9-4D58-8448-7E1B4DC4B6CB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EEE017D6-451E-4EB9-A22F-D3BAA79EA0B0}

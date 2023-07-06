@@ -8,8 +8,6 @@ namespace Portfolio.Core.DTO
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public int Value { get; set; }
-
         public DateTime? LastModifiedDate { get; set; }
         public string? LastModifiedBy { get; set; }
     }

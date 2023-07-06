@@ -6,7 +6,7 @@ namespace Portfolio.Core.Entities
     {
         public int AptitudeId { get; set; }
         public int ResumeId { get; set; }
-
+        public int Value { get; set; }
         public virtual Aptitude? Aptitude { get; set; }
         public virtual Resume? Resume { get; set; }
     }

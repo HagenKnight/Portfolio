@@ -1,12 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Portfolio.Core.Exceptions;
 using Portfolio.Core.Exceptions.Api;
 using Portfolio.Core.Wrappers;
 using Portfolio.Infrastructure.Identity.Authorization;
 using System.Linq.Dynamic.Core.Exceptions;
-using System.Threading.Tasks;
 
 namespace Portfolio.Api.Middleware
 {

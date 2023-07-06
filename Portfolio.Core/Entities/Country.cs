@@ -3,6 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Portfolio.Core.Entities
 {
+
+    /// <summary>
+    /// Countries such as United States, Colombia, etc. Spanish and English names are required.
+    /// </summary>
     public class Country : EntityBase<int>
     {
         [StringLength(250)]

@@ -45,6 +45,7 @@ namespace Portfolio.Infrastructure.Persistence.Data
                 }
             }
 
+            // Set enumtype values on Table[ResumeType]
             modelBuilder
                 .Entity<ResumeType>()
                 .HasData(Enum.GetValues(typeof(ResumeTypeEnum))

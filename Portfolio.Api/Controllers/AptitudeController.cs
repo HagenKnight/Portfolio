@@ -9,6 +9,9 @@ using Portfolio.Core.Wrappers;
 namespace Portfolio.Api.Controllers
 {
 
+    /// <summary>
+    /// Maganement of Aptitudes or Skills, such as Programming Languages, Frameworks, Languages, Soft skills, etc.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class AptitudeController : Controller
@@ -21,6 +24,13 @@ namespace Portfolio.Api.Controllers
             _mediator = mediator;
         }
 
+
+        /// <summary>
+        /// Get all Aptitudes
+        /// </summary>
+        /// <returns>A full aptitudes list </returns>
+        /// <response code="201">Returns complete list of aptitudes</response>
+        /// <response code="400">If the item is null</response>
         [HttpGet]
         public async Task<IEnumerable<AptitudeDTO>> GetAptitudes() =>
             await _mediator.Send(new GetAllAptitudeQuery());

@@ -3,6 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Portfolio.Core.Entities
 {
+
+    /// <summary>
+    /// Hobbies and interests of the employee
+    /// </summary>
     public class Interest : EntityBase<int>
     {
         [StringLength(50)]
