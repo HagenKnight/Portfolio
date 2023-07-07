@@ -41,7 +41,12 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.22.8",
+    "@babel/preset-env": "^7.22.7",
+    "@babel/preset-typescript": "^7.22.5",
+    "babel-jest": "^29.6.1",
     "eslint-config-react-app": "^7.0.1",
+    "jest": "^27.5.1",
     "jest-editor-support": "^31.1.0"
   }
 }

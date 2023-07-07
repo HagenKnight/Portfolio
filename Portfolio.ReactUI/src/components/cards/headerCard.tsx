@@ -31,7 +31,9 @@ export const HeaderCard = () => {
                 <div className="social-links">
                     <ul>
                         {
-                            hyperlink.map((item, index) => { return <SocialNetworkLink key={index} url={item.url} icon={item.icon} /> })
+                            hyperlink.map((item, index) => { 
+                                return <SocialNetworkLink key={index} url={item.url} icon={item.icon} /> 
+                            })
                         }
                     </ul>
                 </div>

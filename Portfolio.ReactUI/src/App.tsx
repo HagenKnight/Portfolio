@@ -13,6 +13,8 @@ import { ArrowsNav } from './components/common/arrowsNav';
 import { HeaderCard } from './components/cards/headerCard';
 // import { Preloader } from './components/loaders/preloaders';
 import { MobileMenu } from './components/menu/mobileMenu';
+import { HomePage } from './pages/home';
+import { AboutMePage } from './pages/aboutMe';
 
 function App() {
   return (
@@ -29,7 +31,9 @@ function App() {
 
           <div className="content-area">
 
-            <div className="animated-sections">
+            <div className="">
+              <HomePage></HomePage>
+              <AboutMePage></AboutMePage>
             </div>
           </div>
 
