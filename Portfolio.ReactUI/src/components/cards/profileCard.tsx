@@ -1,10 +1,7 @@
 import { WorkerProfile } from "../../types/workerProfile";
+import { age } from "../../utils/utilities";
 
 export const ProfileCard = (workerProfile: WorkerProfile) => {
-
-    const age = (birthDate: string): number => {
-        return Math.floor((new Date().getTime() - new Date(birthDate).getTime()) / 3.15576e+10);
-    }
 
     return (
         <>

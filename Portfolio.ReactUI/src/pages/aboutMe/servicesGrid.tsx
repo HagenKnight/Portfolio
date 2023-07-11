@@ -1,7 +1,14 @@
 import { ServiceCard } from "../../components/cards/serviceCard";
 import { Service } from "../../types/service";
 
-export const ServicesGrid = (professionalServices: Service[]) => {
+interface Props {
+    professionalServices: Service[];
+}
+
+export const ServicesGrid = ({ professionalServices }: Props) => {
+
+    const columnA = professionalServices.filter((_, index) => index % 2 === 0);
+    const columnB = professionalServices.filter((_, index) => index % 2 !== 0);;
 
     return (
         <>
@@ -14,15 +21,26 @@ export const ServicesGrid = (professionalServices: Service[]) => {
             </div>
 
             <div className="row">
-                <div className="col-xs-12 col-sm-6">
-                    <div className="col-inner">
+                <div className="col-xs-12 col-md-6">
+                    <div className="col-inner ">
                         {
-                            // professionalServices.map(item => (
-                            //     <ServiceCard key={item.name} {...item} />
-                            // ))
+                            columnA.map((service, index) => (
+                                <ServiceCard key={index} {...service} />
+                            ))
                         }
                     </div>
                 </div>
+
+                <div className="col-xs-12 col-md-6">
+                    <div className="col-inner ">
+                        {
+                            columnB.map((service, index) => (
+                                <ServiceCard key={index} {...service} />
+                            ))
+                        }
+                    </div>
+                </div>
+
             </div>
         </>
     );

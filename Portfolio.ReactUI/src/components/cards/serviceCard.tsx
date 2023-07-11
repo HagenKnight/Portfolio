@@ -1,6 +1,6 @@
 import { Service } from "../../types/service";
 
-export const ServiceCard = (services: Service) => {
+export const ServiceCard = ({ name, description} : Service) => {
 
     return (
         <>
@@ -9,8 +9,8 @@ export const ServiceCard = (services: Service) => {
                     <i className="lnr lnr-store"></i>
                 </div>
                 <div className="ci-text">
-                    <h4>{services.name}</h4>
-                    <p>{services.description}</p>
+                    <h4>{name}</h4>
+                    <p>{description}</p>
                 </div>
             </div>
         </>

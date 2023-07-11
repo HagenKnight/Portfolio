@@ -1,3 +1,6 @@
+import React, { useEffect } from 'react';
+import PerfectScrollbar from 'react-perfect-scrollbar';
+
 import { Service } from "../../types/service";
 import { WorkerProfile } from '../../types/workerProfile';
 
@@ -6,6 +9,9 @@ import { WhiteSpace } from "../../components/common/whiteSpace";
 import { ServicesGrid } from "./servicesGrid";
 
 export const AboutMePage = () => {
+
+    useEffect(() => {
+    }, []);
 
     const workerProfileData: WorkerProfile = {
         firstName: "Miguel",
@@ -23,24 +29,28 @@ export const AboutMePage = () => {
         { name: "Ecommerce", description: "Pellentesque pellentesque, ipsum sit amet auctor accumsan, odio tortor bibendum massa, sit amet ultricies ex lectus scelerisque nibh. Ut non sodales." },
         { name: "Web Design", description: "Pellentesque pellentesque, ipsum sit amet auctor accumsan, odio tortor bibendum massa, sit amet ultricies ex lectus scelerisque nibh. Ut non sodales." },
         { name: "Copywriting", description: "Pellentesque pellentesque, ipsum sit amet auctor accumsan, odio tortor bibendum massa, sit amet ultricies ex lectus scelerisque nibh. Ut non sodales." },
+        { name: "Online Marketing", description: "Pellentesque pellentesque, ipsum sit amet auctor accumsan, odio tortor bibendum massa, sit amet ultricies ex lectus scelerisque nibh. Ut non sodales." },
+        { name: "Online Marketing", description: "Pellentesque pellentesque, ipsum sit amet auctor accumsan, odio tortor bibendum massa, sit amet ultricies ex lectus scelerisque nibh. Ut non sodales." },
+        { name: "Online Marketing", description: "Pellentesque pellentesque, ipsum sit amet auctor accumsan, odio tortor bibendum massa, sit amet ultricies ex lectus scelerisque nibh. Ut non sodales." },
+        { name: "Online Marketing", description: "Pellentesque pellentesque, ipsum sit amet auctor accumsan, odio tortor bibendum massa, sit amet ultricies ex lectus scelerisque nibh. Ut non sodales." },
     ];
 
     return (
         <>
-            <section data-id="about-me" className="animated-section">
-                <div className="page-title">
-                    <h2>About <span>Me</span></h2>
-                </div>
+            <PerfectScrollbar>
+                <section data-id="about-me" className= "animated-section section-active">
+                    {/* animated-section */}
+                    <div className="page-title">
+                        <h2>About <span>Me</span></h2>
+                    </div>
 
-                <div className="section-content">
-
-                    <ProfileCard {...workerProfileData}></ProfileCard>
-
-                    <WhiteSpace size={50}></WhiteSpace>
-
-                    <ServicesGrid {...professionalServices}></ServicesGrid>
-                </div>
-            </section>
+                    <div className="section-content">
+                        <ProfileCard {...workerProfileData}></ProfileCard>
+                        <WhiteSpace size={30}></WhiteSpace>
+                        <ServicesGrid professionalServices={professionalServices}></ServicesGrid>
+                    </div>
+                </section>
+            </PerfectScrollbar>
         </>
     );
 };
